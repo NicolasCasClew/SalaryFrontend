@@ -1,5 +1,19 @@
 .App {
   text-align: center;
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+.txt{
+  color: rgb(255, 255, 255);
+  font-size: large;
+}
+.selector{
+  padding-top: 1cm;
+  padding-bottom: 1cm;
+  
 }
 
 .App-logo {
