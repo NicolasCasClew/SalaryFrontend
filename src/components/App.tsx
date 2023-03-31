@@ -1,11 +1,11 @@
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Slider, Select } from "antd";
 import "./App.css";
 import { Test1 } from "./test1";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
+const handleChange = (value: number) => {
+  console.log(`selected ${value + 7}`);
 };
 const sliderChange = (value: number) => {
   console.log(`selected ${value}`);
@@ -15,12 +15,58 @@ function App() {
   return (
     <div>
       <Layout>
-        <Header className="headerStyle">Header</Header>
+        <Header className="headerStyle">
+          <img
+            className="logo"
+            src="https://adabtive.nl/wp-content/uploads/2023/02/logo2-100.png"
+          />
+          <h1 style={{ fontSize: "25px" }}>Salary Tool</h1>
+        </Header>
         <Layout>
           <Sider className="siderStyle">Sider</Sider>
           <Content className="contentStyle">
             {" "}
-            <Test1></Test1>
+            <div>
+              <div className="selector">
+                <h4 className="txt">Text 1 Text</h4>
+                <Select
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={[
+                    { value: 1, label: "1" },
+                    { value: 2, label: "2" },
+                    { value: 3, label: "3" },
+                    { value: 4, label: "4" },
+                  ]}
+                />
+              </div>
+              <div className="selector">
+                <h4 className="txt">Text 2 texto</h4>
+                <Select
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={[
+                    { value: 1, label: "1" },
+                    { value: 2, label: "2" },
+                    { value: 3, label: "3" },
+                    { value: 4, label: "4" },
+                  ]}
+                />
+              </div>
+              <div className="selector">
+                <h4 className="txt">Text 3 text</h4>
+                <div className="test">
+                  <Slider
+                    className="test"
+                    onChange={sliderChange}
+                    max={4}
+                    min={0}
+                    defaultValue={3}
+                  />
+                </div>
+              </div>
+            </div>
+            <h1 style={{ padding: "15%" }}>mucho texto </h1>
           </Content>
           <Sider className="siderStyle">Sider</Sider>
         </Layout>

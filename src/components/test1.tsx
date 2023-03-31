@@ -26,7 +26,7 @@ export function Test1(): ReactElement {
         />
       </div>
       <div className="selector">
-        <h4 className="txt">Text 2 text</h4>
+        <h4 className="txt">Text 2 texto</h4>
         <Select
           defaultValue="1"
           style={{ width: 120 }}

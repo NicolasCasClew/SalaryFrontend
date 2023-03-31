@@ -5,16 +5,21 @@
   flex-direction: column;
   justify-content: center;
 }
+.logo {
+  width: 7%;
+  padding-top: 0.7%;
+  padding-bottom: 0.7%;
+  height: auto;
+  padding-right: 3%;
+}
 .txt {
   color: rgb(255, 255, 255);
   font-size: large;
   padding-right: 6%;
 }
 .selector {
-  padding-top: 0.5cm;
-  padding-bottom: 0.5cm;
-  padding-left: 8%;
-  padding-right: 5%;
+  padding: 9%;
+  padding-left: 2cm;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -29,23 +34,29 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding-left: 1cm;
 }
 
 .headerStyle {
-  text-align: center;
   color: #fff;
-  height: 64;
-  padding: 50;
-  line-height: 64px;
+  height: 70%;
+  line-height: 35px;
   background-color: #3e4550;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .contentStyle {
   text-align: left;
   min-height: 120;
-  line-height: 90px;
+  line-height: 60px;
   color: #fff;
   background-color: #26282e;
+
+  align-items: center;
+  display: flex;
+  flex-direction: row;
 }
 
 .siderStyle {
@@ -65,4 +76,8 @@ html {
   width: 100%;
   height: 100%;
   background-color: #3e4550;
+}
+
+.test {
+  width: 100px;
 }
