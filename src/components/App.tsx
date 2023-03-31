@@ -6,15 +6,21 @@ import { Test1 } from "./test1";
 const { Header, Content, Footer, Sider } = Layout;
 
 function App() {
-  const [counter, setCounter] = useState(0);
-  const handleChange = (value: number) => {
+  const [select1counter, setselect1Counter] = useState(0);
+  const [select2counter, setselect2Counter] = useState(0);
+  const [slidercounter, setsliderCounter] = useState(0);
+  const handleselect1Change = (value: number) => {
     console.log(`selected ${value}`);
-    setCounter(value);
+    setselect1Counter(value);
+  };
+  const handleselect2Change = (value: number) => {
+    console.log(`selected ${value}`);
+    setselect2Counter(value);
   };
 
   const sliderChange = (value: number) => {
     console.log(`selected ${value}`);
-    setCounter(value);
+    setsliderCounter(value);
   };
   return (
     <div>
@@ -36,7 +42,7 @@ function App() {
                 <Select
                   style={{ width: 120 }}
                   defaultValue={1}
-                  onChange={handleChange}
+                  onChange={handleselect1Change}
                   options={[
                     { value: 1, label: "1" },
                     { value: 2, label: "2" },
@@ -46,10 +52,10 @@ function App() {
                 />
               </div>
               <div className="selector">
-                <h4 className="txt">Text 2 texto</h4>
+                <h4 className="txt">Text 2 text</h4>
                 <Select
                   style={{ width: 120 }}
-                  onChange={handleChange}
+                  onChange={handleselect2Change}
                   defaultValue={1}
                   options={[
                     { value: 1, label: "1" },
@@ -72,7 +78,12 @@ function App() {
                 </div>
               </div>
             </div>
-            <h1>{counter}</h1>
+            <div style={{ paddingLeft: "15%" }}>
+              <h1>Select 1 = {select1counter}</h1>
+              <h1>Select 2 = {select2counter}</h1>
+              <h1>Slider = {slidercounter}</h1>
+              <h1></h1>
+            </div>
           </Content>
           <Sider className="siderStyle">Sider</Sider>
         </Layout>
