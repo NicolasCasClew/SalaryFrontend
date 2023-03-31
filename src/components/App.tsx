@@ -1,4 +1,13 @@
-import { Layout, Menu, Slider, Select, Row, Col, InputNumber } from "antd";
+import {
+  Layout,
+  Menu,
+  Slider,
+  Select,
+  Row,
+  Col,
+  InputNumber,
+  Divider,
+} from "antd";
 import "./App.css";
 import { useState } from "react";
 import { Test1 } from "./test1";
@@ -90,6 +99,7 @@ function App() {
                           width: "100px",
                           textAlign: "left",
                         }}
+                        /*onChange={sliderChange} arrows diabvles till I figure  why this doesnt work*/
                         value={slidercounter}
                       />
                     </Col>
@@ -97,6 +107,10 @@ function App() {
                 </div>
               </div>
             </div>
+            <Divider
+              type="vertical"
+              style={{ height: "500px", borderLeft: "1px solid gray" }}
+            />
             <div style={{ paddingLeft: "15%" }}>
               <h1>Select 1 = {select1counter}</h1>
               <h1>Select 2 = {select2counter}</h1>
