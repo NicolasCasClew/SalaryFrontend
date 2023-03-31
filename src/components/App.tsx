@@ -9,7 +9,7 @@ import {
   Divider,
 } from "antd";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Test1 } from "./test1";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -18,6 +18,8 @@ function App() {
   const [select1counter, setselect1Counter] = useState(0);
   const [select2counter, setselect2Counter] = useState(0);
   const [slidercounter, setsliderCounter] = useState(0);
+  const [result, setResult] = useState(0);
+
   const handleselect1Change = (value: number) => {
     console.log(`selected ${value}`);
     setselect1Counter(value);
@@ -31,6 +33,11 @@ function App() {
     console.log(`selected ${value}`);
     setsliderCounter(value);
   };
+
+  useEffect(() => {
+    setResult(() => select1counter * select2counter * slidercounter);
+  }, [select1counter, select2counter, slidercounter]);
+
   return (
     <div>
       <Layout>
@@ -99,7 +106,7 @@ function App() {
                           width: "100px",
                           textAlign: "left",
                         }}
-                        /*onChange={sliderChange} arrows diabvles till I figure  why this doesnt work*/
+                        /*onChange={sliderChange} arrows disabled till I figure  why this doesnt work*/
                         value={slidercounter}
                       />
                     </Col>
@@ -115,7 +122,7 @@ function App() {
               <h1>Select 1 = {select1counter}</h1>
               <h1>Select 2 = {select2counter}</h1>
               <h1>Slider = {slidercounter}</h1>
-              <h1></h1>
+              <h1>result = {result}</h1>
             </div>
           </Content>
           <Sider className="siderStyle">Sider</Sider>
