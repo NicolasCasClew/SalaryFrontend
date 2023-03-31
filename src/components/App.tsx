@@ -1,4 +1,4 @@
-import { Layout, Menu, Slider, Select } from "antd";
+import { Layout, Menu, Slider, Select, Row, Col, InputNumber } from "antd";
 import "./App.css";
 import { useState } from "react";
 import { Test1 } from "./test1";
@@ -68,13 +68,32 @@ function App() {
               <div className="selector">
                 <h4 className="txt">Text 3 text</h4>
                 <div className="test">
-                  <Slider
-                    className="test"
-                    onChange={sliderChange}
-                    max={4}
-                    min={0}
-                    defaultValue={3}
-                  />
+                  <Row>
+                    <Col span={12}>
+                      <Slider
+                        min={0}
+                        max={4}
+                        style={{ width: "100px" }}
+                        onChange={sliderChange}
+                        value={
+                          typeof slidercounter === "number" ? slidercounter : 0
+                        }
+                      />
+                    </Col>
+                    <Col span={4}>
+                      <InputNumber
+                        controls={false}
+                        min={1}
+                        max={20}
+                        style={{
+                          margin: "0 76px",
+                          width: "100px",
+                          textAlign: "left",
+                        }}
+                        value={slidercounter}
+                      />
+                    </Col>
+                  </Row>
                 </div>
               </div>
             </div>
