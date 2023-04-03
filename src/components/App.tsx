@@ -1,22 +1,22 @@
-import {
-  Layout,
-  Menu,
-  Slider,
-  Select,
-  Row,
-  Col,
-  InputNumber,
-  Divider,
-} from "antd";
+import { Layout, Slider, Select, Row, Col, InputNumber, Divider } from "antd";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
+import type { SliderMarks } from "antd/es/slider";
 import { Test1 } from "./test1";
 
 const { Header, Content, Footer, Sider } = Layout;
+const marks: SliderMarks = {
+  0: "0",
+  1: "1",
+  2: "2",
+  3: "3",
+  4: "4",
+};
 
-function App() {
-  const [select1counter, setselect1Counter] = useState(0);
-  const [select2counter, setselect2Counter] = useState(0);
+function App(props: { something: string; someother?: number }): ReactElement {
+  const { something, someother } = props;
+  const [select1counter, setselect1Counter] = useState(1);
+  const [select2counter, setselect2Counter] = useState(1);
   const [slidercounter, setsliderCounter] = useState(0);
   const [result, setResult] = useState(0);
 
@@ -87,6 +87,7 @@ function App() {
                   <Row>
                     <Col span={12}>
                       <Slider
+                        marks={marks}
                         min={0}
                         max={4}
                         style={{ width: "100px" }}
@@ -123,6 +124,7 @@ function App() {
               <h1>Select 2 = {select2counter}</h1>
               <h1>Slider = {slidercounter}</h1>
               <h1>result = {result}</h1>
+              {something}
             </div>
           </Content>
           <Sider className="siderStyle">Sider</Sider>
