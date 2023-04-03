@@ -15,28 +15,8 @@ const marks: SliderMarks = {
 
 function App(props: { something?: string; someother?: number }): ReactElement {
   const { something, someother } = props;
-  const [select1counter, setselect1Counter] = useState(1);
-  const [select2counter, setselect2Counter] = useState(1);
-  const [slidercounter, setsliderCounter] = useState(0);
+
   const [result, setResult] = useState(0);
-
-  const handleselect1Change = (value: number) => {
-    console.log(`selected ${value}`);
-    setselect1Counter(value);
-  };
-  const handleselect2Change = (value: number) => {
-    console.log(`selected ${value}`);
-    setselect2Counter(value);
-  };
-
-  const sliderChange = (value: number) => {
-    console.log(`selected ${value}`);
-    setsliderCounter(value);
-  };
-
-  useEffect(() => {
-    setResult(() => select1counter * select2counter * slidercounter);
-  }, [select1counter, select2counter, slidercounter]);
 
   return (
     <div>
@@ -53,17 +33,6 @@ function App(props: { something?: string; someother?: number }): ReactElement {
           <Content className="contentStyle">
             {" "}
             <Page></Page>
-            <Divider
-              type="vertical"
-              style={{ height: "500px", borderLeft: "1px solid gray" }}
-            />
-            <div style={{ paddingLeft: "15%" }}>
-              <h1>Select 1 = {select1counter}</h1>
-              <h1>Select 2 = {select2counter}</h1>
-              <h1>Slider = {slidercounter}</h1>
-              <h1>result = {result}</h1>
-              {something}
-            </div>
           </Content>
           <Sider className="siderStyle">Sider</Sider>
         </Layout>

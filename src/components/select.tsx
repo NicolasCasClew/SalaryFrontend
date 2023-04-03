@@ -1,18 +1,17 @@
-import { ReactElement, useState } from "react";
+import { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import { Select } from "antd";
 
-export function Selector(): ReactElement {
-  const data: number = 1234;
-  const sliderChange = (value: number) => {
+export function Selector(props: {
+  setSelectCounter: Dispatch<SetStateAction<number>>;
+}): ReactElement {
+  const handleselectChange = (value: number) => {
     console.log(`selected ${value}`);
-    setsliderCounter(value);
+    props.setSelectCounter(value);
   };
-
-  const [slidercounter, setsliderCounter] = useState(0);
   return (
     <Select
       style={{ width: 120 }}
-      //onChange={handleselect2Change}
+      onChange={handleselectChange}
       defaultValue={1}
       options={[
         { value: 1, label: "1" },

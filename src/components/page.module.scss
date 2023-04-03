@@ -1,0 +1,26 @@
+.input_selector {
+  padding: 5%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+.left_content {
+  min-width: 650px;
+  padding: 120px;
+  display: flex;
+  flex-direction: column;
+}
+
+.output_divider {
+  min-width: 300px;
+  align-items: center;
+  padding: 2%;
+  padding-left: 70px;
+  display: flex;
+  flex-direction: column;
+}
+.input_title {
+  font-size: 120%;
+  padding-right: 40px;
+  font-weight: bold;
+}
