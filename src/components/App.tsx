@@ -1,32 +1,26 @@
 import { Layout } from "antd";
-import "./App.css";
 import { ReactElement } from "react";
 import { Page } from "./page";
+import { SalaryHeader } from "./header";
 import styles from "./App.module.scss";
+//import { Home } from "./useFetch";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 function App(): ReactElement {
   return (
     <div>
       <Layout>
-        <Header className={styles["headerStyle"]}>
-          <img
-            className={styles["logo"]}
-            src="https://adabtive.nl/wp-content/uploads/2023/02/logo2-100.png"
-            alt=""
-          />
-          <h1 style={{ fontSize: "23px" }}>Salary Tool</h1>
-        </Header>
+        <SalaryHeader></SalaryHeader>
         <Layout>
-          <Sider className={styles["siderStyle"]}>Sider</Sider>
-          <Content className={styles["contentStyle"]}>
+          <Sider className={styles["sider"]}>Sider</Sider>
+          <Content className={styles["content"]}>
             {" "}
             <Page></Page>
           </Content>
-          <Sider className={styles["siderStyle"]}>Sider</Sider>
+          <Sider className={styles["sider"]}>Sider</Sider>
         </Layout>
-        <Footer className={styles["footerStyle"]}>Footer</Footer>
+        <Footer className={styles["footer"]}>Footer</Footer>
       </Layout>
     </div>
   );

@@ -1,12 +1,13 @@
 import { Dispatch, ReactElement, SetStateAction } from "react";
 import { Select } from "antd";
 
-export function Selector(props: {
-  setSelectCounter: Dispatch<SetStateAction<number>>;
+export function ScalaryCalcDropDown(props: {
+  setexpCounter: Dispatch<SetStateAction<number>>;
 }): ReactElement {
   const handleselectChange = (value: number) => {
-    props.setSelectCounter(value);
+    props.setexpCounter(value);
   };
+
   return (
     <Select
       style={{ width: 120 }}

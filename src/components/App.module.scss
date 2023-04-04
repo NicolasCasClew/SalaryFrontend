@@ -1,20 +1,4 @@
-.logo {
-  width: 7%;
-  padding-top: 0.7%;
-  padding-bottom: 0.7%;
-  height: auto;
-  padding-right: 3%;
-}
-.headerStyle {
-  color: #fff;
-  height: 70%;
-  line-height: 35px;
-  background-color: #00152a;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-.contentStyle {
+.content {
   text-align: left;
   min-height: 120;
   line-height: 60px;
@@ -23,14 +7,19 @@
   display: flex;
   flex-direction: row;
 }
-.siderStyle {
+.sider {
   text-align: center;
   line-height: 120px;
   color: #ffffff;
   background-color: #2a2a2a;
 }
-.footerStyle {
+.footer {
   text-align: center;
-  color: #fff;
+  color: #dddddd;
   background-color: #00152a;
+}
+html {
+  width: 100%;
+  height: 100%;
+  background-color: #c8c8c8;
 }
