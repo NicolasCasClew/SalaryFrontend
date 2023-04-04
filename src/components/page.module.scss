@@ -5,8 +5,11 @@
   flex-direction: row;
 }
 .left_content {
-  min-width: 650px;
-  padding: 120px;
+  padding: 8%;
+  padding-top: 10%;
+  align-items: flex-start;
+  min-width: 300px;
+  row-gap: 110px;
   display: flex;
   flex-direction: column;
 }
@@ -21,6 +24,8 @@
 }
 .input_title {
   font-size: 120%;
-  padding-right: 40px;
+  max-height: 20px;
   font-weight: bold;
+  margin: 0px;
+  margin-top: 2px;
 }

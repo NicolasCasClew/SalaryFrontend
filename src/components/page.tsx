@@ -26,32 +26,27 @@ export function Page(): ReactElement {
   return (
     <div style={{ flexDirection: "row", display: "flex" }}>
       <div className={classes["left_content"]}>
-        <div className={classes["input_selector"]}>
-          <h4 className={classes["input_title"]}>Expertise</h4>
-          <Selector setSelectCounter={setSelectCounter}></Selector>
-        </div>
-        <div className={classes["input_selector"]}>
-          <h4 className={classes["input_title"]}>Responsibility</h4>
-          <Selector setSelectCounter={setSelect2Counter}></Selector>
-        </div>
-        <div className={classes["input_selector"]}>
-          <h4 className={classes["input_title"]}>Tenure </h4>
-          <div className="test">
-            <SliderAdab setSliderCounter={setsliderCounter}></SliderAdab>
-          </div>
-        </div>
+        <h3 className={classes["input_title"]}>Expertise</h3>
+        <h3 className={classes["input_title"]}>Responsibility</h3>
+        <h3 className={classes["input_title"]}>Tenure </h3>
+      </div>
+      <div className={classes["left_content"]}>
+        <Selector setSelectCounter={setSelectCounter}></Selector>
+        <Selector setSelectCounter={setSelect2Counter}></Selector>
+        <SliderAdab setSliderCounter={setsliderCounter}></SliderAdab>
       </div>
       <Divider
         type="vertical"
         style={{
           //cant modify it through the css
-          height: "450px",
+          height: "440px",
           borderLeft: "1px solid gray",
           alignSelf: "center",
+          display: "flex",
         }}
       />
       <div className={classes["output_divider"]}>
-        <h1 style={{ paddingTop: "120px" }}>Select 1 = {selectCounter}</h1>
+        <h1 style={{ paddingTop: "45px" }}>Select 1 = {selectCounter}</h1>
         <h1>Select 2 = {select2counter}</h1>
         <h1>Slider = {slidercounter}</h1>
         <h1>result = {result}</h1>
