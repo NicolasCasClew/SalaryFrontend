@@ -4,6 +4,13 @@
   display: flex;
   flex-direction: row;
 }
+.input_divider {
+  row-gap: 20px;
+  gap: 9em;
+  display: flex;
+  flex-direction: row;
+  padding: 10%;
+}
 
 .left_content {
   padding: 8%;
@@ -27,11 +34,28 @@
   font-size: 120%;
   max-height: 20px;
   font-weight: bold;
-  margin: 0px;
+  margin: px;
   margin-top: 2px;
 }
-@media screen and (max-width: 992px) {
+
+.Red {
+  background: red;
+  color: white;
+  width: 200px;
+}
+.Green {
+  background: green;
+  color: white;
+  width: 200px;
+}
+.Blue {
+  background: blue;
+  color: white;
+  width: 200px;
+}
+
+@media screen and (max-width: 602px) {
   .colTest {
-    flex: 100% !important; /* !important so that it overrides the inline style because by default it has higher priority */
+    flex: 100% !important;
   }
 }

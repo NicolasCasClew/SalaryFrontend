@@ -1,4 +1,4 @@
-import { Divider } from "antd";
+import { Divider, Row, Col } from "antd";
 import "./App.css";
 import { ReactElement, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
@@ -16,42 +16,47 @@ export function Page(): ReactElement {
   }, [expCounter, respoCounter, tenureCounter]);
 
   return (
-    <div style={{ flexDirection: "row", display: "flex" }}>
-      <div className={classes["left_content"]}>
-        <h3 className={classes["input_title"]}>Expertise</h3>
-        <h3 className={classes["input_title"]}>Responsibility</h3>
-        <h3 className={classes["input_title"]}>Tenure </h3>
-      </div>
+    <>
+      <Row className="row">
+        <Col className="colTest">
+          <div className={classes["input_divider"]}>
+            <h3 className={classes["input_title"]}>Expertise</h3>
+            <ScalaryCalcDropDown
+              setexpCounter={setexpCounter}
+            ></ScalaryCalcDropDown>
+          </div>
+          <div className={classes["input_divider"]}>
+            <h3 className={classes["input_title"]}>Responsibility</h3>
+            <ScalaryCalcDropDown
+              setexpCounter={setrespoCounter}
+            ></ScalaryCalcDropDown>
+          </div>
+          <div className={classes["input_divider"]}>
+            <h3 className={classes["input_title"]}>Tenure </h3>
+            <SalaryCalcSlider
+              settenureCounter={settenureCounter}
+            ></SalaryCalcSlider>
+          </div>
+        </Col>
 
-      <div className={classes["left_content"]}>
-        <ScalaryCalcDropDown
-          setexpCounter={setexpCounter}
-        ></ScalaryCalcDropDown>
-        <ScalaryCalcDropDown
-          setexpCounter={setrespoCounter}
-        ></ScalaryCalcDropDown>
-        <SalaryCalcSlider
-          settenureCounter={settenureCounter}
-        ></SalaryCalcSlider>
-      </div>
+        <Divider
+          type="vertical"
+          style={{
+            //cant modify it through the css
+            height: "440px",
+            borderLeft: "1px solid gray",
+            alignSelf: "center",
+            display: "flex",
+          }}
+        />
 
-      <Divider
-        type="vertical"
-        style={{
-          //cant modify it through the css
-          height: "440px",
-          borderLeft: "1px solid gray",
-          alignSelf: "center",
-          display: "flex",
-        }}
-      />
-
-      <div className={classes["output_divider"]}>
-        <h1 style={{ paddingTop: "45px" }}>Select 1 = {expCounter}</h1>
-        <h1>Select 2 = {respoCounter}</h1>
-        <h1>Slider = {tenureCounter}</h1>
-        <h1>result = {result}</h1>
-      </div>
-    </div>
+        <Col className={classes["output_divider"]}>
+          <h1 style={{ paddingTop: "45px" }}>Select 1 = {expCounter}</h1>
+          <h1>Select 2 = {respoCounter}</h1>
+          <h1>Slider = {tenureCounter}</h1>
+          <h1>result = {result}</h1>
+        </Col>
+      </Row>
+    </>
   );
 }
