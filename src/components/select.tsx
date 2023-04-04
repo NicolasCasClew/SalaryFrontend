@@ -1,11 +1,10 @@
-import { Dispatch, ReactElement, SetStateAction, useState } from "react";
+import { Dispatch, ReactElement, SetStateAction } from "react";
 import { Select } from "antd";
 
 export function Selector(props: {
   setSelectCounter: Dispatch<SetStateAction<number>>;
 }): ReactElement {
   const handleselectChange = (value: number) => {
-    console.log(`selected ${value}`);
     props.setSelectCounter(value);
   };
   return (

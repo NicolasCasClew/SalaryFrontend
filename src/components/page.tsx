@@ -1,18 +1,9 @@
-import { Layout, Slider, Select, Row, Col, InputNumber, Divider } from "antd";
+import { Divider } from "antd";
 import "./App.css";
 import { ReactElement, useEffect, useState } from "react";
-import type { SliderMarks } from "antd/es/slider";
 import { SliderAdab } from "./slider";
 import { Selector } from "./select";
 import classes from "./page.module.scss";
-
-const marks: SliderMarks = {
-  0: "0",
-  1: "1",
-  2: "2",
-  3: "3",
-  4: "4",
-};
 
 export function Page(): ReactElement {
   const [result, setResult] = useState(0);
