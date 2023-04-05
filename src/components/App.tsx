@@ -3,7 +3,8 @@ import { ReactElement } from "react";
 import { Page } from "./page";
 import { SalaryHeader } from "./header";
 import styles from "./App.module.scss";
-//import { Home } from "./useFetch";
+import Home from "./useFetch";
+import InfiniScroll from "./infiniList";
 
 const { Content, Footer, Sider } = Layout;
 

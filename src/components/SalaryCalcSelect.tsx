@@ -1,7 +1,7 @@
 import { Dispatch, ReactElement, SetStateAction } from "react";
 import { Select } from "antd";
 
-export function ScalaryCalcDropDown(props: {
+export function SalaryCalcDropDown(props: {
   setexpCounter: Dispatch<SetStateAction<number>>;
 }): ReactElement {
   const handleselectChange = (value: number) => {

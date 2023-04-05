@@ -2,8 +2,10 @@ import { Divider, Row, Col } from "antd";
 import "./App.css";
 import { ReactElement, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
-import { ScalaryCalcDropDown } from "./SalaryCalcSelect";
+import { SalaryCalcDropDown } from "./SalaryCalcSelect";
 import classes from "./page.module.scss";
+import InfiniScroll from "./infiniList";
+import SalaryCalculatorFrom from "./SalaryCalculatorForm";
 
 export function Page(): ReactElement {
   const [result, setResult] = useState(0);
@@ -21,21 +23,28 @@ export function Page(): ReactElement {
         <Col className={classes["colTest"]}>
           <div className={classes["input_divider"]}>
             <h3 className={classes["input_title"]}>Expertise</h3>
-            <ScalaryCalcDropDown
+            <SalaryCalcDropDown
               setexpCounter={setexpCounter}
-            ></ScalaryCalcDropDown>
+            ></SalaryCalcDropDown>
           </div>
           <div className={classes["input_divider"]}>
             <h3 className={classes["input_title"]}> Responsibility</h3>
-            <ScalaryCalcDropDown
+            <SalaryCalcDropDown
               setexpCounter={setrespoCounter}
-            ></ScalaryCalcDropDown>
+            ></SalaryCalcDropDown>
           </div>
           <div className={classes["input_divider"]}>
             <h3 className={classes["input_title"]}> Tenure</h3>
             <SalaryCalcSlider
               settenureCounter={settenureCounter}
             ></SalaryCalcSlider>
+          </div>
+          <div className={classes["user_list"]}>
+            <h3 className={classes["input_title"]}> Users</h3>
+            <InfiniScroll />
+          </div>
+          <div className={classes["user_list"]}>
+            <SalaryCalculatorFrom></SalaryCalculatorFrom>
           </div>
         </Col>
 
