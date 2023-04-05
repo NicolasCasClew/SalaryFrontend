@@ -5,28 +5,20 @@
   flex-direction: row;
 }
 .input_divider {
-  gap: 8em;
+  gap: 10em;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 5%;
-}
-
-.left_content {
-  padding: 8%;
-  padding-top: 10%;
-  align-items: flex-start;
-  min-width: 300px;
-  row-gap: 110px;
-  display: flex;
-  flex-direction: column;
+  padding: 2em;
+  justify-content: space-around;
 }
 
 .output_divider {
-  min-width: 300px;
+  min-width: 10rem;
+  gap: 3em;
   align-items: center;
-  padding: 2%;
-  padding-left: 70px;
+  padding: 1.5rem;
+  padding-left: 7rem;
   display: flex;
   flex-direction: column;
 }
@@ -34,28 +26,11 @@
   font-size: 120%;
   max-height: 1em;
   font-weight: bold;
-  margin: 0;
-  margin-bottom: 2.5em;
-}
-
-.Red {
-  background: red;
-  color: white;
-  width: 200px;
-}
-.Green {
-  background: green;
-  color: white;
-  width: 200px;
-}
-.Blue {
-  background: blue;
-  color: white;
-  width: 200px;
 }
 
 @media screen and (max-width: 602px) {
   .colTest {
+    //padding-top: 20em;
     flex: 100% !important;
   }
 }
