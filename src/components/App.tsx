@@ -13,7 +13,12 @@ function App(): ReactElement {
       <Layout>
         <SalaryHeader></SalaryHeader>
         <Layout>
-          <Sider breakpoint="xs" width={150} collapsedWidth={18} />
+          <Sider
+            breakpoint="xs"
+            width={150}
+            collapsedWidth={18}
+            className={styles["sider"]}
+          />
           <Content className={styles["content"]}>
             {" "}
             <Page></Page>
