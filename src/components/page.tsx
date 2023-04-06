@@ -1,10 +1,19 @@
-import { Divider, Row, Col, Form } from "antd";
+import {
+  Divider,
+  Row,
+  Col,
+  Form,
+  Typography,
+  ConfigProvider,
+  theme,
+} from "antd";
 import { ReactElement, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
 import { SalaryCalcDropDown } from "./SalaryCalcSelect";
 import classes from "./page.module.scss";
 
 export function Page(): ReactElement {
+  const { Title } = Typography;
   const [result, setResult] = useState(0);
   const [expCounter, setexpCounter] = useState(1);
   const [respoCounter, setrespoCounter] = useState(1);
@@ -19,7 +28,7 @@ export function Page(): ReactElement {
     return () => window.removeEventListener("resize", handleResize);
   }, [width]);
   useEffect(() => {
-    width <= 602 && !isHorizontal && makeHorizontal();
+    width <= 602 && !isHorizontal && makeHorizontal(); //absolute values >:c
   });
   useEffect(() => {
     width > 602 && isHorizontal && makevertical();
@@ -44,11 +53,7 @@ export function Page(): ReactElement {
         style={{ alignContent: "center", alignItems: "center" }}
       >
         <Col className={classes["colTest"]}>
-          <Form
-            //form={form}
-            name="dynamic_form_complex"
-            style={{ minWidth: "6em" }}
-          >
+          <Form name="dynamic_form_complex" style={{ minWidth: "6em" }}>
             <Form.Item
               name="expertise"
               label="Expertise"
@@ -86,12 +91,11 @@ export function Page(): ReactElement {
             //className={classes["divider"]}
           />
         </Col>
-
         <Col className={classes["output_divider"]}>
-          <h1>Select 1 = {expCounter}</h1>
-          <h1>Select 2 = {respoCounter}</h1>
-          <h1>Slider = {tenureCounter}</h1>
-          <h1>result = {result}</h1>
+          <Title level={4}>select 1 = {expCounter}</Title>
+          <Title level={4}>select 2 = {respoCounter}</Title>
+          <Title level={4}>slider = {tenureCounter}</Title>
+          <Title level={4}>result = {result}</Title>
         </Col>
       </Row>
     </>
