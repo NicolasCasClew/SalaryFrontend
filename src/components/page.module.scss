@@ -36,8 +36,11 @@
   padding: 2em;
   justify-content: center;
 }
-.divider {
-  height: 300px;
-  border-left: 1px solid rgb(0, 255, 8);
-  border-top: 1px solid rgb(0, 255, 8);
+.divider_H {
+  border-top: 1px solid rgb(78, 185, 55);
+  width: 25em;
+}
+.divider_V {
+  border-left: 1px solid rgb(78, 185, 55);
+  height: 25em;
 }

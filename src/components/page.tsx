@@ -1,4 +1,4 @@
-import { Divider, Row, Col, Form, Button } from "antd";
+import { Divider, Row, Col, Form } from "antd";
 import { ReactElement, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
 import { SalaryCalcDropDown } from "./SalaryCalcSelect";
@@ -9,7 +9,6 @@ export function Page(): ReactElement {
   const [expCounter, setexpCounter] = useState(1);
   const [respoCounter, setrespoCounter] = useState(1);
   const [tenureCounter, settenureCounter] = useState(0);
-  //const [form] = Form.useForm();
   const [isHorizontal, setisHorizontal] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -20,10 +19,10 @@ export function Page(): ReactElement {
     return () => window.removeEventListener("resize", handleResize);
   }, [width]);
   useEffect(() => {
-    width < 600 && !isHorizontal && makeHorizontal();
+    width <= 602 && !isHorizontal && makeHorizontal();
   });
   useEffect(() => {
-    width > 600 && isHorizontal && makevertical();
+    width > 602 && isHorizontal && makevertical();
   });
   function makeHorizontal() {
     console.log("toggle it");
@@ -76,29 +75,15 @@ export function Page(): ReactElement {
               <SalaryCalcSlider
                 settenureCounter={settenureCounter}
               ></SalaryCalcSlider>
-              <Button onClick={() => setisHorizontal(!isHorizontal)}>
-                Change orientation
-              </Button>
             </Form.Item>
           </Form>
         </Col>
-        <Col>
+        <Col
+          className={isHorizontal ? classes["divider_H"] : classes["divider_V"]}
+        >
           <Divider
             type={isHorizontal ? "horizontal" : "vertical"}
             //className={classes["divider"]}
-            style={
-              isHorizontal
-                ? {
-                    borderTop: "1px solid rgb(0, 255, 8)",
-                    width: "25em",
-                    justifyContent: "center",
-                  }
-                : {
-                    borderLeft: "1px solid rgb(0, 255, 8)",
-                    height: "25em",
-                    justifyContent: "center",
-                  }
-            }
           />
         </Col>
 
