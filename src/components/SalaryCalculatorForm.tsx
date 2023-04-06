@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Button, Form, Input, Select, Space } from "antd";
+import { Form, Select } from "antd";
 import { SalaryCalcDropDown } from "./SalaryCalcSelect";
+import { SalaryCalcSlider } from "./SalaryCalcSlider";
+import classes from "./page.module.scss";
 
 const { Option } = Select;
 
@@ -13,25 +15,30 @@ const areas = [
 
 const SalaryCalculatorFrom: React.FC = () => {
   const [form] = Form.useForm();
-
-  const handleChange = () => {
-    form.setFieldsValue({ sights: [] });
-  };
   const [expCounter, setexpCounter] = useState(1);
 
   return (
     <Form
       form={form}
       name="dynamic_form_complex"
-      style={{ maxWidth: 600 }}
+      style={{ minWidth: "60em" }}
+
       //autoComplete="off"
     >
       <Form.Item
-        name="Tenure"
-        label="Tenure"
-        rules={[{ required: true, message: "Insert Value" }]}
+        name="expertise"
+        label="Expertise"
+        className={classes["input_divider"]}
       >
         <SalaryCalcDropDown setexpCounter={setexpCounter}></SalaryCalcDropDown>
+        <h1>Select 1 = {expCounter}</h1>
+      </Form.Item>
+      <Form.Item name="responsibility" label="Responsibility">
+        <SalaryCalcDropDown setexpCounter={setexpCounter}></SalaryCalcDropDown>
+        <h1>Select 1 = {expCounter}</h1>
+      </Form.Item>
+      <Form.Item name="tenure" label="Tenure">
+        <SalaryCalcSlider settenureCounter={setexpCounter}></SalaryCalcSlider>
         <h1>Select 1 = {expCounter}</h1>
       </Form.Item>
     </Form>

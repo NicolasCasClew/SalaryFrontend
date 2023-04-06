@@ -1,17 +1,38 @@
-import { Divider, Row, Col } from "antd";
-import "./App.css";
+import { Divider, Row, Col, Form, Button } from "antd";
 import { ReactElement, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
 import { SalaryCalcDropDown } from "./SalaryCalcSelect";
 import classes from "./page.module.scss";
-import InfiniScroll from "./infiniList";
-import SalaryCalculatorFrom from "./SalaryCalculatorForm";
 
 export function Page(): ReactElement {
   const [result, setResult] = useState(0);
   const [expCounter, setexpCounter] = useState(1);
   const [respoCounter, setrespoCounter] = useState(1);
   const [tenureCounter, settenureCounter] = useState(0);
+  //const [form] = Form.useForm();
+  const [isHorizontal, setisHorizontal] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
+  useEffect(() => {
+    width < 600 && !isHorizontal && makeHorizontal();
+  });
+  useEffect(() => {
+    width > 600 && isHorizontal && makevertical();
+  });
+  function makeHorizontal() {
+    console.log("toggle it");
+    setisHorizontal(!isHorizontal);
+  }
+  function makevertical() {
+    console.log("toggle it");
+    setisHorizontal(!isHorizontal);
+  }
 
   useEffect(() => {
     setResult(() => expCounter * respoCounter * tenureCounter);
@@ -19,45 +40,67 @@ export function Page(): ReactElement {
 
   return (
     <>
-      <Row className="row">
+      <Row
+        className="row"
+        style={{ alignContent: "center", alignItems: "center" }}
+      >
         <Col className={classes["colTest"]}>
-          <div className={classes["input_divider"]}>
-            <h3 className={classes["input_title"]}>Expertise</h3>
-            <SalaryCalcDropDown
-              setexpCounter={setexpCounter}
-            ></SalaryCalcDropDown>
-          </div>
-          <div className={classes["input_divider"]}>
-            <h3 className={classes["input_title"]}> Responsibility</h3>
-            <SalaryCalcDropDown
-              setexpCounter={setrespoCounter}
-            ></SalaryCalcDropDown>
-          </div>
-          <div className={classes["input_divider"]}>
-            <h3 className={classes["input_title"]}> Tenure</h3>
-            <SalaryCalcSlider
-              settenureCounter={settenureCounter}
-            ></SalaryCalcSlider>
-          </div>
-          <div className={classes["user_list"]}>
-            <h3 className={classes["input_title"]}> Users</h3>
-            <InfiniScroll />
-          </div>
-          <div className={classes["user_list"]}>
-            <SalaryCalculatorFrom></SalaryCalculatorFrom>
-          </div>
+          <Form
+            //form={form}
+            name="dynamic_form_complex"
+            style={{ minWidth: "6em" }}
+          >
+            <Form.Item
+              name="expertise"
+              label="Expertise"
+              className={classes["input_divider"]}
+            >
+              <SalaryCalcDropDown
+                setexpCounter={setexpCounter}
+              ></SalaryCalcDropDown>
+            </Form.Item>
+            <Form.Item
+              name="responsibility"
+              label="Responsibility"
+              className={classes["input_divider"]}
+            >
+              <SalaryCalcDropDown
+                setexpCounter={setrespoCounter}
+              ></SalaryCalcDropDown>
+            </Form.Item>
+            <Form.Item
+              name="tenure"
+              label="Tenure"
+              className={classes["input_divider"]}
+            >
+              <SalaryCalcSlider
+                settenureCounter={settenureCounter}
+              ></SalaryCalcSlider>
+              <Button onClick={() => setisHorizontal(!isHorizontal)}>
+                Change orientation
+              </Button>
+            </Form.Item>
+          </Form>
         </Col>
-
-        <Divider
-          type="vertical"
-          style={{
-            //cant modify it through the css
-            height: "330px",
-            borderLeft: "1px solid gray",
-            alignSelf: "center",
-            display: "flex",
-          }}
-        />
+        <Col>
+          <Divider
+            type={isHorizontal ? "horizontal" : "vertical"}
+            //className={classes["divider"]}
+            style={
+              isHorizontal
+                ? {
+                    borderTop: "1px solid rgb(0, 255, 8)",
+                    width: "25em",
+                    justifyContent: "center",
+                  }
+                : {
+                    borderLeft: "1px solid rgb(0, 255, 8)",
+                    height: "25em",
+                    justifyContent: "center",
+                  }
+            }
+          />
+        </Col>
 
         <Col className={classes["output_divider"]}>
           <h1>Select 1 = {expCounter}</h1>

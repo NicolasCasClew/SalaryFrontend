@@ -15,7 +15,7 @@ function App(): ReactElement {
         <SalaryHeader></SalaryHeader>
         <Layout>
           <Sider
-            breakpoint="sm"
+            breakpoint="md"
             width={150}
             collapsedWidth={18}
             className={styles["sider"]}
@@ -25,7 +25,7 @@ function App(): ReactElement {
             <Page></Page>
           </Content>
           <Sider
-            breakpoint="md"
+            breakpoint="lg"
             width={150}
             collapsedWidth={18}
             className={styles["sider"]}
