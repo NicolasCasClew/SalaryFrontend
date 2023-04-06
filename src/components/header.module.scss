@@ -1,0 +1,22 @@
+.header {
+  color: #fff;
+  height: 5rem;
+  line-height: 2.5rem;
+  background-color: #00152a;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1.5em;
+}
+.header_items_left {
+  display: flex;
+  align-items: center;
+}
+.header_items_right {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  padding: 0.5em;
+  height: 5rem;
+}

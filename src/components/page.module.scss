@@ -1,0 +1,36 @@
+.input_divider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2em;
+  justify-content: end;
+}
+
+.output_divider {
+  min-width: 1rem;
+  padding-left: 7rem;
+}
+
+.input_title {
+  font-size: 120%;
+  max-height: 1em;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 602px) {
+  .colTest {
+    flex: 100% !important;
+  }
+}
+
+.divider_H {
+  height: 2px;
+  border: 1px solid rgb(78, 185, 55);
+  width: 25em;
+}
+
+.divider_V {
+  width: 2px;
+  border: 1px solid rgb(78, 185, 55);
+  height: 25em;
+}

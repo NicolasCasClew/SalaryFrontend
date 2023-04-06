@@ -1,0 +1,9 @@
+{
+    "editor.codeActionsOnSave": {
+
+      
+        "source.fixAll.eslint": true
+      },
+      "eslint.validate": ["typecript"],
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
