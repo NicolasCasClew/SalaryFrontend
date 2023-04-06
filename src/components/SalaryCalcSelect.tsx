@@ -2,10 +2,10 @@ import { Dispatch, ReactElement, SetStateAction } from "react";
 import { Select } from "antd";
 
 export function SalaryCalcDropDown(props: {
-  setexpCounter: Dispatch<SetStateAction<number>>;
+  setExpertiseCounter: Dispatch<SetStateAction<number>>;
 }): ReactElement {
   const handleselectChange = (value: number) => {
-    props.setexpCounter(value);
+    props.setExpertiseCounter(value);
   };
 
   return (

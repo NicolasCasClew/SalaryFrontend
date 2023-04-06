@@ -2,10 +2,10 @@ import { Dispatch, ReactElement, SetStateAction } from "react";
 import { Slider } from "antd";
 
 export function SalaryCalcSlider(props: {
-  settenureCounter: Dispatch<SetStateAction<number>>;
+  setTenureCounter: Dispatch<SetStateAction<number>>;
 }): ReactElement {
   const sliderChange = (value: number) => {
-    props.settenureCounter(value);
+    props.setTenureCounter(value);
   };
 
   return (

@@ -1,21 +1,16 @@
 .input_divider {
-  gap: 1em;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 2em;
-  justify-content: center;
+  justify-content: end;
 }
 
 .output_divider {
   min-width: 1rem;
-  gap: 2em;
-  align-items: center;
-  padding: 1.5rem;
   padding-left: 7rem;
-  display: flex;
-  flex-direction: column;
 }
+
 .input_title {
   font-size: 120%;
   max-height: 1em;
@@ -24,23 +19,18 @@
 
 @media screen and (max-width: 602px) {
   .colTest {
-    //padding-top: 20em;
     flex: 100% !important;
   }
 }
-.user_list {
-  gap: 2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2em;
-  justify-content: center;
-}
+
 .divider_H {
-  border-top: 1px solid rgb(78, 185, 55);
+  height: 2px;
+  border: 1px solid rgb(78, 185, 55);
   width: 25em;
 }
+
 .divider_V {
-  border-left: 1px solid rgb(78, 185, 55);
+  width: 2px;
+  border: 1px solid rgb(78, 185, 55);
   height: 25em;
 }

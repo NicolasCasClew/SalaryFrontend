@@ -1,12 +1,4 @@
-import {
-  Divider,
-  Row,
-  Col,
-  Form,
-  Typography,
-  ConfigProvider,
-  theme,
-} from "antd";
+import { Divider, Row, Col, Form, Typography } from "antd";
 import { ReactElement, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
 import { SalaryCalcDropDown } from "./SalaryCalcSelect";
@@ -15,36 +7,27 @@ import classes from "./page.module.scss";
 export function Page(): ReactElement {
   const { Title } = Typography;
   const [result, setResult] = useState(0);
-  const [expCounter, setexpCounter] = useState(1);
-  const [respoCounter, setrespoCounter] = useState(1);
-  const [tenureCounter, settenureCounter] = useState(0);
-  const [isHorizontal, setisHorizontal] = useState(false);
+  const [expertiseCounter, setExpertiseCounter] = useState(1);
+  const [responsibilityCounter, setResponsibiltyCounter] = useState(1);
+  const [tenureCounter, setTenureCounter] = useState(0);
+  const [isHorizontal, setIsHorizontal] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     function handleResize() {
       setWidth(window.innerWidth);
     }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [width]);
-  useEffect(() => {
-    width <= 602 && !isHorizontal && makeHorizontal(); //absolute values >:c
-  });
-  useEffect(() => {
-    width > 602 && isHorizontal && makevertical();
-  });
-  function makeHorizontal() {
-    console.log("toggle it");
-    setisHorizontal(!isHorizontal);
-  }
-  function makevertical() {
-    console.log("toggle it");
-    setisHorizontal(!isHorizontal);
-  }
+  }, []);
 
   useEffect(() => {
-    setResult(() => expCounter * respoCounter * tenureCounter);
-  }, [expCounter, respoCounter, tenureCounter]);
+    setIsHorizontal(width <= 602);
+  }, [width]);
+
+  useEffect(() => {
+    setResult(() => expertiseCounter * responsibilityCounter * tenureCounter);
+  }, [expertiseCounter, responsibilityCounter, tenureCounter]);
 
   return (
     <>
@@ -52,7 +35,7 @@ export function Page(): ReactElement {
         className="row"
         style={{ alignContent: "center", alignItems: "center" }}
       >
-        <Col className={classes["colTest"]}>
+        <Col className={classes["colTest"]} span={10}>
           <Form name="dynamic_form_complex" style={{ minWidth: "6em" }}>
             <Form.Item
               name="expertise"
@@ -60,7 +43,7 @@ export function Page(): ReactElement {
               className={classes["input_divider"]}
             >
               <SalaryCalcDropDown
-                setexpCounter={setexpCounter}
+                setExpertiseCounter={setExpertiseCounter}
               ></SalaryCalcDropDown>
             </Form.Item>
             <Form.Item
@@ -69,7 +52,7 @@ export function Page(): ReactElement {
               className={classes["input_divider"]}
             >
               <SalaryCalcDropDown
-                setexpCounter={setrespoCounter}
+                setExpertiseCounter={setResponsibiltyCounter}
               ></SalaryCalcDropDown>
             </Form.Item>
             <Form.Item
@@ -78,22 +61,22 @@ export function Page(): ReactElement {
               className={classes["input_divider"]}
             >
               <SalaryCalcSlider
-                settenureCounter={settenureCounter}
+                setTenureCounter={setTenureCounter}
               ></SalaryCalcSlider>
             </Form.Item>
           </Form>
         </Col>
-        <Col
-          className={isHorizontal ? classes["divider_H"] : classes["divider_V"]}
-        >
+        <Col span={1}>
           <Divider
             type={isHorizontal ? "horizontal" : "vertical"}
-            //className={classes["divider"]}
+            className={
+              isHorizontal ? classes["divider_H"] : classes["divider_V"]
+            }
           />
         </Col>
-        <Col className={classes["output_divider"]}>
-          <Title level={4}>select 1 = {expCounter}</Title>
-          <Title level={4}>select 2 = {respoCounter}</Title>
+        <Col className={classes["output_divider"]} span={9}>
+          <Title level={4}>select 1 = {expertiseCounter}</Title>
+          <Title level={4}>select 2 = {responsibilityCounter}</Title>
           <Title level={4}>slider = {tenureCounter}</Title>
           <Title level={4}>result = {result}</Title>
         </Col>
