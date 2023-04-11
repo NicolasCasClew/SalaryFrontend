@@ -20,6 +20,7 @@
 @media screen and (max-width: 602px) {
   .colTest {
     flex: 100% !important;
+    flex-direction: column;
   }
 }
 

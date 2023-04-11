@@ -35,7 +35,7 @@ export function Page(): ReactElement {
         className="row"
         style={{ alignContent: "center", alignItems: "center" }}
       >
-        <Col className={classes["colTest"]} span={10}>
+        <Col className={classes["colTest"]}>
           <Form name="dynamic_form_complex" style={{ minWidth: "6em" }}>
             <Form.Item
               name="expertise"
@@ -66,7 +66,7 @@ export function Page(): ReactElement {
             </Form.Item>
           </Form>
         </Col>
-        <Col span={1}>
+        <Col>
           <Divider
             type={isHorizontal ? "horizontal" : "vertical"}
             className={
@@ -74,7 +74,7 @@ export function Page(): ReactElement {
             }
           />
         </Col>
-        <Col className={classes["output_divider"]} span={9}>
+        <Col className={classes["output_divider"]}>
           <Title level={4}>select 1 = {expertiseCounter}</Title>
           <Title level={4}>select 2 = {responsibilityCounter}</Title>
           <Title level={4}>slider = {tenureCounter}</Title>
