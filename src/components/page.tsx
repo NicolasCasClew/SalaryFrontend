@@ -33,10 +33,17 @@ export function Page(): ReactElement {
     <>
       <Row
         className="row"
-        style={{ alignContent: "center", alignItems: "center" }}
+        style={{
+          alignContent: "center",
+          alignItems: "center",
+          justifyContent: "space-around",
+        }}
       >
         <Col className={classes["colTest"]}>
-          <Form name="dynamic_form_complex" style={{ minWidth: "6em" }}>
+          <Form
+            name="dynamic_form_complex"
+            style={{ minWidth: "6em", alignItems: "center" }}
+          >
             <Form.Item
               name="expertise"
               label="Expertise"

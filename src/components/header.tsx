@@ -21,7 +21,10 @@ export function SalaryHeader(props: {
         <h1 style={{ fontSize: "23px" }}>Salary Tool</h1>
       </div>
       <div className={styles["header_items_right"]}>
-        <Button style={{ gap: "10px" }} onClick={() => themeChange(isTrue)}>
+        <Button
+          className={styles["light_mode_button"]}
+          onClick={() => themeChange(isTrue)}
+        >
           Light/Night
         </Button>
       </div>
