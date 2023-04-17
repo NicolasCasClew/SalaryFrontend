@@ -3,6 +3,7 @@ import { ReactElement, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
 import { SalaryCalcDropDown } from "./SalaryCalcSelect";
 import classes from "./page.module.scss";
+import InfiniScroll from "./infiniList";
 
 export function Page(): ReactElement {
   const { Title } = Typography;
@@ -70,6 +71,9 @@ export function Page(): ReactElement {
               <SalaryCalcSlider
                 setTenureCounter={setTenureCounter}
               ></SalaryCalcSlider>
+            </Form.Item>
+            <Form.Item>
+              <InfiniScroll />
             </Form.Item>
           </Form>
         </Col>
