@@ -29,12 +29,10 @@ export function Page(): ReactElement {
     });
     const salaryResult = await response.json();
     console.log(salaryResult); // 1=SalaryTotal   2=SeniorityPlus   3= loyaltyPlus   4=responsibilityPlus
-    //console.log(response);
     setResult(salaryResult[0]);
     setExpertiseResult(salaryResult[1]);
     setLoyaltyResult(salaryResult[2]);
     setResponsibilityResult(salaryResult[3]);
-    //setExpertiseCounter(salaryResult(2));
   };
 
   useEffect(() => {
@@ -46,18 +44,17 @@ export function Page(): ReactElement {
   }, []);
 
   useEffect(() => {
-    setIsHorizontal(width <= 602);
+    setIsHorizontal(width <= 761);
   }, [width]);
 
   useEffect(() => {
-    console.log("Si, se han tocado los jimmys");
     sendData();
   }, [expertiseCounter, responsibilityCounter, tenureCounter]);
 
   return (
     <>
       <Row
-        className="row"
+        className={classes["colTest"]}
         style={{
           alignContent: "center",
           alignItems: "center",
@@ -96,9 +93,6 @@ export function Page(): ReactElement {
                 setTenureCounter={setTenureCounter}
               ></SalaryCalcSlider>
             </Form.Item>
-            <Form.Item>
-              <InfiniScroll />
-            </Form.Item>
           </Form>
         </Col>
         <Col>
@@ -110,12 +104,22 @@ export function Page(): ReactElement {
           />
         </Col>
         <Col className={classes["output_divider"]}>
-          <Title level={4}>Result= {result} €</Title>
-          <Title level={4}>Loyalty Bonus= {loyaltyResult} €</Title>
-          <Title level={4}>Expertise Bonus = {expertiseResult} €</Title>
-          <Title level={4}>
-            Responsability Bonus = {responsibilityResult} €
-          </Title>
+          <div className={classes["text_outputs"]}>
+            <Title level={5}>Result= </Title>
+            <Title level={5}>{result} €</Title>
+          </div>
+          <div className={classes["text_outputs"]}>
+            <Title level={5}>Loyalty Bonus= </Title>
+            <Title level={5}> {loyaltyResult} €</Title>
+          </div>
+          <div className={classes["text_outputs"]}>
+            <Title level={5}>Expertise Bonus = </Title>
+            <Title level={5}> {expertiseResult} €</Title>
+          </div>
+          <div className={classes["text_outputs"]}>
+            <Title level={5}>Responsability Bonus =</Title>
+            <Title level={5}>{responsibilityResult} €</Title>
+          </div>
         </Col>
       </Row>
     </>

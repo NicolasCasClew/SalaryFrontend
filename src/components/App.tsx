@@ -19,7 +19,7 @@ function App(): ReactElement {
           <SalaryHeader setthemeChange={setDarkTheme}></SalaryHeader>
           <Layout>
             <Sider
-              breakpoint="lg"
+              breakpoint="xl"
               width={"15vw"}
               collapsedWidth={"1rem"}
               className={styles["sider"]}
@@ -28,7 +28,7 @@ function App(): ReactElement {
               <Page></Page>
             </Content>
             <Sider
-              breakpoint="lg"
+              breakpoint="xl"
               width={"15vw"}
               collapsedWidth={"1rem"}
               className={styles["sider"]}

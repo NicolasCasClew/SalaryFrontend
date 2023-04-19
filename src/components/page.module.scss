@@ -15,6 +15,12 @@
   align-items: center;
   justify-content: center;
 }
+.text_outputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
 
 .input_title {
   font-size: 120%;
@@ -22,9 +28,10 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 602px) {
+@media screen and (max-width: 761px) {
   .colTest {
     flex: 100% !important;
+    justify-content: center;
   }
 }
 
