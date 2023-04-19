@@ -4,15 +4,29 @@ import { SalaryCalcSlider } from "./SalaryCalcSlider";
 import { SalaryCalcDropDown } from "./SalaryCalcSelect";
 import classes from "./page.module.scss";
 import InfiniScroll from "./infiniList";
+import { Button } from "antd/es/radio";
 
 export function Page(): ReactElement {
   const { Title } = Typography;
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState<number>(0);
   const [expertiseCounter, setExpertiseCounter] = useState(1);
   const [responsibilityCounter, setResponsibiltyCounter] = useState(1);
   const [tenureCounter, setTenureCounter] = useState(0);
   const [isHorizontal, setIsHorizontal] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
+
+  const sendData = async () => {
+    const numbers = [expertiseCounter, responsibilityCounter, tenureCounter];
+    const response = await fetch("http://localhost:8080/processNumbers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(numbers),
+    });
+    const salaryResult = await response.json();
+    setResult(salaryResult);
+  };
 
   useEffect(() => {
     function handleResize() {
@@ -27,7 +41,8 @@ export function Page(): ReactElement {
   }, [width]);
 
   useEffect(() => {
-    setResult(() => expertiseCounter * responsibilityCounter * tenureCounter);
+    console.log("Si, se han tocado los jimmys");
+    sendData();
   }, [expertiseCounter, responsibilityCounter, tenureCounter]);
 
   return (

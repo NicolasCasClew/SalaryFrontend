@@ -10,8 +10,8 @@ export function SalaryCalcSlider(props: {
 
   return (
     <Slider
-      min={0}
-      max={4}
+      min={1}
+      max={15}
       style={{ width: "160px" }}
       onChange={sliderChange}
     />
