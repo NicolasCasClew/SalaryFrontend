@@ -10,6 +10,9 @@ export function Page(): ReactElement {
   const { Title } = Typography;
   const [result, setResult] = useState<number>(0);
   const [expertiseCounter, setExpertiseCounter] = useState(1);
+  const [expertiseResult, setExpertiseResult] = useState(0);
+  const [loyaltyResult, setLoyaltyResult] = useState(0);
+  const [responsibilityResult, setResponsibilityResult] = useState(0);
   const [responsibilityCounter, setResponsibiltyCounter] = useState(1);
   const [tenureCounter, setTenureCounter] = useState(0);
   const [isHorizontal, setIsHorizontal] = useState(false);
@@ -25,7 +28,13 @@ export function Page(): ReactElement {
       body: JSON.stringify(numbers),
     });
     const salaryResult = await response.json();
-    setResult(salaryResult);
+    console.log(salaryResult); // 1=SalaryTotal   2=SeniorityPlus   3= loyaltyPlus   4=responsibilityPlus
+    //console.log(response);
+    setResult(salaryResult[0]);
+    setExpertiseResult(salaryResult[1]);
+    setLoyaltyResult(salaryResult[2]);
+    setResponsibilityResult(salaryResult[3]);
+    //setExpertiseCounter(salaryResult(2));
   };
 
   useEffect(() => {
@@ -101,10 +110,12 @@ export function Page(): ReactElement {
           />
         </Col>
         <Col className={classes["output_divider"]}>
-          <Title level={4}>select 1 = {expertiseCounter}</Title>
-          <Title level={4}>select 2 = {responsibilityCounter}</Title>
-          <Title level={4}>slider = {tenureCounter}</Title>
-          <Title level={4}>result = {result}</Title>
+          <Title level={4}>Result= {result} €</Title>
+          <Title level={4}>Loyalty Bonus= {loyaltyResult} €</Title>
+          <Title level={4}>Expertise Bonus = {expertiseResult} €</Title>
+          <Title level={4}>
+            Responsability Bonus = {responsibilityResult} €
+          </Title>
         </Col>
       </Row>
     </>
