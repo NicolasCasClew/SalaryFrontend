@@ -1,7 +1,9 @@
-import { Divider, Row, Col, Form, Typography } from "antd";
-import { ReactElement, useEffect, useState } from "react";
+import { Divider, Row, Col, Form, Typography, Tooltip } from "antd";
+import { ReactElement, SetStateAction, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
 import { SalaryCalcDropDown } from "./SalaryCalcSelect";
+import { SalaryRadioButon } from "./salaryCalculatorRadioButton";
+import { SalaryInputNumber } from "../assets/salaryCalculatorInputNumber";
 import classes from "./page.module.scss";
 import InfiniScroll from "./infiniList";
 import { Button } from "antd/es/radio";
@@ -14,8 +16,9 @@ export function Page(): ReactElement {
   const [loyaltyResult, setLoyaltyResult] = useState(0);
   const [responsibilityResult, setResponsibilityResult] = useState(0);
   const [responsibilityCounter, setResponsibiltyCounter] = useState(1);
-  const [tenureCounter, setTenureCounter] = useState(0);
+  const [tenureCounter, setTenureCounter] = useState<number | null>(0);
   const [isHorizontal, setIsHorizontal] = useState(false);
+  const [isEmployee, setIsEmployee] = useState(true);
   const [width, setWidth] = useState(window.innerWidth);
 
   const sendData = async () => {
@@ -44,7 +47,7 @@ export function Page(): ReactElement {
   }, []);
 
   useEffect(() => {
-    setIsHorizontal(width <= 761);
+    setIsHorizontal(width <= 920);
   }, [width]);
 
   useEffect(() => {
@@ -66,6 +69,12 @@ export function Page(): ReactElement {
             name="dynamic_form_complex"
             style={{ minWidth: "6em", alignItems: "center" }}
           >
+            <Form.Item className={classes["input_divider"]}>
+              <SalaryRadioButon
+                setIsEmployee={setIsEmployee}
+                helpText="Lorem ipsumt etc etc"
+              />
+            </Form.Item>
             <Form.Item
               name="expertise"
               label="Expertise"
@@ -89,9 +98,7 @@ export function Page(): ReactElement {
               label="Tenure"
               className={classes["input_divider"]}
             >
-              <SalaryCalcSlider
-                setTenureCounter={setTenureCounter}
-              ></SalaryCalcSlider>
+              <SalaryInputNumber setTenureCounter={setTenureCounter} />
             </Form.Item>
           </Form>
         </Col>
@@ -105,21 +112,46 @@ export function Page(): ReactElement {
         </Col>
         <Col className={classes["output_divider"]}>
           <div className={classes["text_outputs"]}>
-            <Title level={5}>Result= </Title>
-            <Title level={5}>{result} €</Title>
+            <Title level={5}>Result </Title>
+            <Title level={5}>{result.toLocaleString("de-DE")} €</Title>
           </div>
+          <Divider type="horizontal" className={classes["separator_outputs"]} />
           <div className={classes["text_outputs"]}>
-            <Title level={5}>Loyalty Bonus= </Title>
-            <Title level={5}> {loyaltyResult} €</Title>
+            <Title level={5}>Loyalty Bonus </Title>
+            <Title level={5}> {loyaltyResult.toLocaleString("de-DE")} €</Title>
           </div>
+          <Divider type="horizontal" className={classes["separator_outputs"]} />
           <div className={classes["text_outputs"]}>
-            <Title level={5}>Expertise Bonus = </Title>
-            <Title level={5}> {expertiseResult} €</Title>
+            <Title level={5}>Expertise Bonus </Title>
+            <Title level={5}>
+              {" "}
+              {expertiseResult.toLocaleString("de-DE")} €
+            </Title>
           </div>
+          <Divider type="horizontal" className={classes["separator_outputs"]} />
           <div className={classes["text_outputs"]}>
-            <Title level={5}>Responsability Bonus =</Title>
-            <Title level={5}>{responsibilityResult} €</Title>
+            <Title level={5}>Responsability Bonus </Title>
+            <Title level={5}>
+              {responsibilityResult.toLocaleString("de-DE")} €
+            </Title>
           </div>
+          <Divider type="horizontal" className={classes["separator_outputs"]} />
+          <div className={classes["text_outputs"]}>
+            <Title level={5}>Employee selected </Title>
+            <Title level={5}>
+              {isEmployee ? "Yea it is " : "    no it aint"} €
+            </Title>
+          </div>
+          <Divider type="horizontal" className={classes["separator_outputs"]} />
+          <div className={classes["text_outputs"]}>
+            <Title level={5}>tenure selected</Title>
+            <Title level={5}>{tenureCounter} €</Title>
+          </div>
+          <Divider
+            type="horizontal"
+            style={{ borderColor: "#10320a", margin: "0" }} //which one is better??
+            dashed
+          />
         </Col>
       </Row>
     </>

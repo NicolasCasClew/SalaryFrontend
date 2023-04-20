@@ -8,9 +8,9 @@
 }
 
 .output_divider {
-  min-width: 1rem;
+  width: 370px;
   padding-left: 1rem;
-  padding-right: 15vw;
+  padding-right: 1rem;
   padding-bottom: 5em;
   align-items: center;
   justify-content: center;
@@ -20,6 +20,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
+  //gap: 70px;
 }
 
 .input_title {
@@ -28,10 +29,10 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 761px) {
+@media screen and (max-width: 0px) {
   .colTest {
     flex: 100% !important;
-    justify-content: center;
+    justify-content: right;
   }
 }
 
@@ -43,7 +44,12 @@
 }
 
 .divider_V {
-  width: 2px;
+  width: 1px;
   border: 1px solid rgb(78, 185, 55);
-  height: 25em;
+  height: 30em;
+}
+
+.separator_outputs {
+  margin: 0;
+  border-bottom: 1px solid rgb(16, 50, 10);
 }
