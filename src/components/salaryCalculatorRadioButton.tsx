@@ -9,7 +9,6 @@ export function SalaryRadioButon(props: {
   const [isEmployee, setIsemployee] = useState<boolean>(true);
   const radioButtonChange = (value: RadioChangeEvent) => {
     setIsemployee(value.target.value);
-    console.log("el empleado es =" + isEmployee);
     props.setIsEmployee(value.target.value);
   };
 

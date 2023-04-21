@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 1em;
+  //padding: 1em;
+  padding-top: 1em;
   padding-left: 4rem;
   justify-content: start;
 }
@@ -12,6 +13,7 @@
   padding-left: 1rem;
   padding-right: 1rem;
   padding-bottom: 5em;
+  padding-top: 3em;
   align-items: center;
   justify-content: center;
 }
@@ -20,6 +22,15 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
+  //padding-right: 75px;
+  //gap: 70px;
+}
+.total_output {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 40px;
   //gap: 70px;
 }
 
@@ -54,4 +65,7 @@
   margin: 0;
   //border-bottom: 1px solid rgb(16, 50, 10);
   border-color: #3a5400;
+  //max-width: 10em !important;
+  //padding-right: 5em;
+  //margin-right: 20px;
 }

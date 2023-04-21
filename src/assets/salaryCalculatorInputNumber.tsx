@@ -8,7 +8,6 @@ export function SalaryInputNumber(props: {
   const inputNumberChange = (value: number | null) => {
     props.setTenureCounter(value);
   };
-  console.log("FUNCIONA AQUI?????");
   //IF THE NUMBER IS REMOVED IT EXPLODES , FIX TODO
   return (
     <Tooltip title={props.helpText} placement="right">

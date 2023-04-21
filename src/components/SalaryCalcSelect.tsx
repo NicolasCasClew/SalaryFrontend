@@ -9,13 +9,14 @@ export function SalaryCalcDropDown(props: {
 }): ReactElement {
   const allOptions: SelectProps["options"] = [];
 
-  const handleselectChange = (value: number) => {
+  const handleSelectChange = (value: number) => {
     props.setExpertiseCounter(value);
   };
+
   for (let i = props.itemNumberBegin; i <= props.itemNumberEnd; i++) {
     allOptions.push({
       label: i,
-      i,
+      value: i,
     });
   }
 
@@ -23,7 +24,7 @@ export function SalaryCalcDropDown(props: {
     <Tooltip title={props.helpText} placement="right">
       <Select
         style={{ width: 120 }}
-        onChange={handleselectChange}
+        onChange={handleSelectChange}
         defaultValue={1}
         options={allOptions}
       />

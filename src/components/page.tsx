@@ -11,7 +11,7 @@ import { Button } from "antd/es/radio";
 export function Page(): ReactElement {
   const { Title } = Typography;
   const [result, setResult] = useState<number>(0);
-  const [hoursPerWeek, setHoursPerWeek] = useState(0);
+  const [hoursPerWeek, setHoursPerWeek] = useState(40);
   const [expertiseCounter, setExpertiseCounter] = useState(1);
   const [expertiseResult, setExpertiseResult] = useState(0);
   const [loyaltyResult, setLoyaltyResult] = useState(0);
@@ -23,7 +23,13 @@ export function Page(): ReactElement {
   const [width, setWidth] = useState(window.innerWidth);
 
   const sendData = async () => {
-    const numbers = [expertiseCounter, responsibilityCounter, tenureCounter];
+    const numbers = [
+      expertiseCounter,
+      responsibilityCounter,
+      tenureCounter,
+      hoursPerWeek,
+      isEmployee ? 1 : 0,
+    ];
     const response = await fetch("http://localhost:8080/processNumbers", {
       method: "POST",
       headers: {
@@ -53,7 +59,13 @@ export function Page(): ReactElement {
 
   useEffect(() => {
     sendData();
-  }, [expertiseCounter, responsibilityCounter, tenureCounter]);
+  }, [
+    expertiseCounter,
+    responsibilityCounter,
+    tenureCounter,
+    hoursPerWeek,
+    isEmployee,
+  ]);
 
   return (
     <>
@@ -84,6 +96,7 @@ export function Page(): ReactElement {
               <SalaryCalcSlider
                 maxNumber={40}
                 minNumber={0}
+                helpText="Lorem ipsum mucho texto "
                 setTenureCounter={setHoursPerWeek}
               />
             </Form.Item>
@@ -131,45 +144,51 @@ export function Page(): ReactElement {
             }
           />
         </Col>
+
         <Col className={classes["output_divider"]}>
-          <div className={classes["text_outputs"]}>
-            <Title level={5}>Result </Title>
-            <Title level={5}>{result.toLocaleString("de-DE")} €</Title>
+          <div style={{ width: "18em" }}>
+            <div className={classes["text_outputs"]}>
+              <Title level={5} style={{ fontSize: "15px", marginTop: "1em" }}>
+                Classification
+              </Title>
+              <Title level={5}>{isEmployee ? "Employee" : "Contractor"}</Title>
+            </div>
+            <Divider
+              type="horizontal"
+              className={classes["separator_outputs"]}
+              dashed
+            />
+            <div
+              className={classes["text_outputs"]}
+              //style={{ paddingRight: "75px" }}
+            >
+              <Title level={5} style={{ fontSize: "15px", marginTop: "1em" }}>
+                Hours per week{" "}
+              </Title>
+              <Title level={5}>{hoursPerWeek} </Title>
+            </div>
+            <Divider
+              type="horizontal"
+              className={classes["separator_outputs"]}
+              dashed
+            />
+            <div className={classes["text_outputs"]}>
+              <Title level={5} style={{ fontSize: "15px", marginTop: "1em" }}>
+                Year in the company(?)
+              </Title>
+              <Title level={5}>{tenureCounter} </Title>
+            </div>
+            <Divider
+              type="horizontal"
+              className={classes["separator_outputs"]}
+              dashed
+            />
           </div>
-          <Divider type="horizontal" className={classes["separator_outputs"]} />
-          <div className={classes["text_outputs"]}>
-            <Title level={5}>Loyalty Bonus </Title>
-            <Title level={5}> {loyaltyResult.toLocaleString("de-DE")} €</Title>
+          <div className={classes["total_output"]}>
+            <Title level={3}>FTE Salary </Title>
+            <Title level={3}>{result.toLocaleString("de-DE")} €</Title>
           </div>
-          <Divider type="horizontal" className={classes["separator_outputs"]} />
-          <div className={classes["text_outputs"]}>
-            <Title level={5}>Expertise Bonus </Title>
-            <Title level={5}>
-              {" "}
-              {expertiseResult.toLocaleString("de-DE")} €
-            </Title>
-          </div>
-          <Divider type="horizontal" className={classes["separator_outputs"]} />
-          <div className={classes["text_outputs"]}>
-            <Title level={5}>Responsability Bonus </Title>
-            <Title level={5}>
-              {responsibilityResult.toLocaleString("de-DE")} €
-            </Title>
-          </div>
-          <Divider type="horizontal" className={classes["separator_outputs"]} />
-          <div className={classes["text_outputs"]}>
-            <Title level={5}>Hours per week </Title>
-            <Title level={5}>{hoursPerWeek} €</Title>
-          </div>
-          <Divider
-            type="horizontal"
-            className={classes["separator_outputs"]}
-            dashed
-          />
-          <div className={classes["text_outputs"]}>
-            <Title level={5}>tenure selected</Title>
-            <Title level={5}>{tenureCounter} €</Title>
-          </div>
+
           <Divider
             type="horizontal"
             style={{ borderColor: "#10320a", margin: "0" }}
