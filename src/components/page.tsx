@@ -82,6 +82,7 @@ export function Page(): ReactElement {
       >
         <Col className={classes["colTest"]}>
           <Form
+            layout="vertical"
             name="dynamic_form_complex"
             style={{ minWidth: "6em", alignItems: "center" }}
           >
@@ -99,8 +100,9 @@ export function Page(): ReactElement {
               <SalaryCalcSlider
                 maxNumber={40}
                 minNumber={0}
+                step={1}
                 helpText="Lorem ipsum mucho texto "
-                setTenureCounter={setHoursPerWeek}
+                setCounter={setHoursPerWeek}
               />
             </Form.Item>
             <Form.Item
@@ -108,24 +110,26 @@ export function Page(): ReactElement {
               label="Expertise"
               className={classes["input_divider"]}
             >
-              <SalaryCalcDropDown
-                setExpertiseCounter={setExpertiseCounter}
-                itemNumberBegin={0}
-                itemNumberEnd={4}
+              <SalaryCalcSlider
+                setCounter={setExpertiseCounter}
+                minNumber={0}
+                maxNumber={4}
+                step={1}
                 helpText="Lorem ipsum text text"
-              ></SalaryCalcDropDown>
+              ></SalaryCalcSlider>
             </Form.Item>
             <Form.Item
               name="responsibility"
               label="Responsibility"
               className={classes["input_divider"]}
             >
-              <SalaryCalcDropDown
-                setExpertiseCounter={setResponsibiltyCounter}
-                itemNumberBegin={1}
-                itemNumberEnd={4}
+              <SalaryCalcSlider
+                setCounter={setResponsibiltyCounter}
+                minNumber={1}
+                maxNumber={4}
+                step={0.25}
                 helpText="Lorem Ipsum the other one"
-              ></SalaryCalcDropDown>
+              ></SalaryCalcSlider>
             </Form.Item>
             <Form.Item
               name="tenure"
