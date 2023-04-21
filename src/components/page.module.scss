@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 2em;
+  padding: 1em;
   padding-left: 4rem;
   justify-content: start;
 }
@@ -46,10 +46,12 @@
 .divider_V {
   width: 1px;
   border: 1px solid rgb(78, 185, 55);
+  //border-color: #3a5400;
   height: 30em;
 }
 
 .separator_outputs {
   margin: 0;
-  border-bottom: 1px solid rgb(16, 50, 10);
+  //border-bottom: 1px solid rgb(16, 50, 10);
+  border-color: #3a5400;
 }

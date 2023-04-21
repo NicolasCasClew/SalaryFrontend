@@ -11,6 +11,7 @@ import { Button } from "antd/es/radio";
 export function Page(): ReactElement {
   const { Title } = Typography;
   const [result, setResult] = useState<number>(0);
+  const [hoursPerWeek, setHoursPerWeek] = useState(0);
   const [expertiseCounter, setExpertiseCounter] = useState(1);
   const [expertiseResult, setExpertiseResult] = useState(0);
   const [loyaltyResult, setLoyaltyResult] = useState(0);
@@ -76,12 +77,26 @@ export function Page(): ReactElement {
               />
             </Form.Item>
             <Form.Item
+              className={classes["input_divider"]}
+              name="hous per week"
+              label="Hours Per Week"
+            >
+              <SalaryCalcSlider
+                maxNumber={40}
+                minNumber={0}
+                setTenureCounter={setHoursPerWeek}
+              />
+            </Form.Item>
+            <Form.Item
               name="expertise"
               label="Expertise"
               className={classes["input_divider"]}
             >
               <SalaryCalcDropDown
                 setExpertiseCounter={setExpertiseCounter}
+                itemNumberBegin={0}
+                itemNumberEnd={4}
+                helpText="Lorem ipsum text text"
               ></SalaryCalcDropDown>
             </Form.Item>
             <Form.Item
@@ -91,6 +106,9 @@ export function Page(): ReactElement {
             >
               <SalaryCalcDropDown
                 setExpertiseCounter={setResponsibiltyCounter}
+                itemNumberBegin={1}
+                itemNumberEnd={4}
+                helpText="Lorem Ipsum the other one"
               ></SalaryCalcDropDown>
             </Form.Item>
             <Form.Item
@@ -98,7 +116,10 @@ export function Page(): ReactElement {
               label="Tenure"
               className={classes["input_divider"]}
             >
-              <SalaryInputNumber setTenureCounter={setTenureCounter} />
+              <SalaryInputNumber
+                setTenureCounter={setTenureCounter}
+                helpText="Lorem ipipipipipipipipipipipipipipippi"
+              />
             </Form.Item>
           </Form>
         </Col>
@@ -137,20 +158,22 @@ export function Page(): ReactElement {
           </div>
           <Divider type="horizontal" className={classes["separator_outputs"]} />
           <div className={classes["text_outputs"]}>
-            <Title level={5}>Employee selected </Title>
-            <Title level={5}>
-              {isEmployee ? "Yea it is " : "    no it aint"} €
-            </Title>
+            <Title level={5}>Hours per week </Title>
+            <Title level={5}>{hoursPerWeek} €</Title>
           </div>
-          <Divider type="horizontal" className={classes["separator_outputs"]} />
+          <Divider
+            type="horizontal"
+            className={classes["separator_outputs"]}
+            dashed
+          />
           <div className={classes["text_outputs"]}>
             <Title level={5}>tenure selected</Title>
             <Title level={5}>{tenureCounter} €</Title>
           </div>
           <Divider
             type="horizontal"
-            style={{ borderColor: "#10320a", margin: "0" }} //which one is better??
-            dashed
+            style={{ borderColor: "#10320a", margin: "0" }}
+            //dashed or no dashed???
           />
         </Col>
       </Row>

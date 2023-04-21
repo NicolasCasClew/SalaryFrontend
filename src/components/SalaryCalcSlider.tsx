@@ -3,6 +3,8 @@ import { Slider } from "antd";
 
 export function SalaryCalcSlider(props: {
   setTenureCounter: Dispatch<SetStateAction<number>>;
+  minNumber: number;
+  maxNumber: number;
 }): ReactElement {
   const sliderChange = (value: number) => {
     props.setTenureCounter(value);
@@ -10,8 +12,8 @@ export function SalaryCalcSlider(props: {
 
   return (
     <Slider
-      min={1}
-      max={15}
+      min={props.minNumber}
+      max={props.maxNumber}
       style={{ width: "160px" }}
       onChange={sliderChange}
     />
