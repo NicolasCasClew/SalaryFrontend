@@ -58,7 +58,10 @@ export function Page(): ReactElement {
   }, [width]);
 
   useEffect(() => {
-    sendData();
+    const getData = setTimeout(() => {
+      sendData();
+    }, 250);
+    return () => clearTimeout(getData);
   }, [
     expertiseCounter,
     responsibilityCounter,
