@@ -1,12 +1,10 @@
 import { Divider, Row, Col, Form, Typography, Tooltip } from "antd";
-import { ReactElement, SetStateAction, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
-import { SalaryCalcDropDown } from "./SalaryCalcSelect";
 import { SalaryRadioButon } from "./salaryCalculatorRadioButton";
-import { SalaryInputNumber } from "../assets/salaryCalculatorInputNumber";
+import { SalaryInputNumber } from "./salaryCalculatorInputNumber";
 import classes from "./page.module.scss";
-import InfiniScroll from "./infiniList";
-import { Button } from "antd/es/radio";
+import { InfoCircleOutlined } from "@ant-design/icons";
 
 export function Page(): ReactElement {
   const { Title } = Typography;
@@ -21,6 +19,8 @@ export function Page(): ReactElement {
   const [isHorizontal, setIsHorizontal] = useState(false);
   const [isEmployee, setIsEmployee] = useState(true);
   const [width, setWidth] = useState(window.innerWidth);
+  const loremIpsum =
+    " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam";
 
   const sendData = async () => {
     const numbers = [
@@ -60,7 +60,7 @@ export function Page(): ReactElement {
   useEffect(() => {
     const getData = setTimeout(() => {
       sendData();
-    }, 250);
+    }, 110);
     return () => clearTimeout(getData);
   }, [
     expertiseCounter,
@@ -81,12 +81,11 @@ export function Page(): ReactElement {
         }}
       >
         <Col className={classes["colTest"]}>
-          <Form
-            layout="vertical"
-            name="dynamic_form_complex"
-            style={{ minWidth: "6em", alignItems: "center" }}
-          >
-            <Form.Item className={classes["input_divider"]}>
+          <Form layout="vertical" name="dynamic_form_complex">
+            <Form.Item
+              className={classes["input_divider"]}
+              style={{ paddingTop: "5em" }}
+            >
               <SalaryRadioButon
                 setIsEmployee={setIsEmployee}
                 helpText="Lorem ipsumt etc etc"
@@ -101,7 +100,7 @@ export function Page(): ReactElement {
                 maxNumber={40}
                 minNumber={0}
                 step={1}
-                helpText="Lorem ipsum mucho texto "
+                helpText={loremIpsum}
                 setCounter={setHoursPerWeek}
               />
             </Form.Item>
@@ -115,7 +114,7 @@ export function Page(): ReactElement {
                 minNumber={0}
                 maxNumber={4}
                 step={1}
-                helpText="Lorem ipsum text text"
+                helpText={loremIpsum}
               ></SalaryCalcSlider>
             </Form.Item>
             <Form.Item
@@ -128,7 +127,7 @@ export function Page(): ReactElement {
                 minNumber={1}
                 maxNumber={4}
                 step={0.25}
-                helpText="Lorem Ipsum the other one"
+                helpText={loremIpsum}
               ></SalaryCalcSlider>
             </Form.Item>
             <Form.Item
@@ -138,7 +137,7 @@ export function Page(): ReactElement {
             >
               <SalaryInputNumber
                 setTenureCounter={setTenureCounter}
-                helpText="Lorem ipipipipipipipipipipipipipipippi"
+                helpText={loremIpsum}
               />
             </Form.Item>
           </Form>
@@ -199,7 +198,6 @@ export function Page(): ReactElement {
           <Divider
             type="horizontal"
             style={{ borderColor: "#10320a", margin: "0" }}
-            //dashed or no dashed???
           />
         </Col>
       </Row>
