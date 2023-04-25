@@ -34,9 +34,7 @@ function App(): ReactElement {
               className={styles["sider"]}
             />
           </Layout>
-          <Footer className={styles["footer"]}>
-            Copyright © SomeCompany SomeText
-          </Footer>
+          <Footer className={styles["footer"]}></Footer>
         </Layout>
       </ConfigProvider>
     </>

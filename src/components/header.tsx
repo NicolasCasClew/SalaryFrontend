@@ -17,8 +17,8 @@ export function SalaryHeader(props: {
   return (
     <Header className={styles["header"]}>
       <div className={styles["header_items_left"]}>
-        <img className={styles["logo"]} src={logo} alt={logo} />
-        <h1 style={{ fontSize: "23px" }}>Salary Tool</h1>
+        {/* <img className={styles["logo"]} src={logo} alt={logo} /> */}
+        <h1 style={{ fontSize: "23px" }}>Adabtive Salary Tool</h1>
       </div>
       <div className={styles["header_items_right"]}>
         <Button

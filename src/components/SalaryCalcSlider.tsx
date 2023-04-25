@@ -25,8 +25,6 @@ export function SalaryCalcSlider(props: {
     [minim]: minTxt,
     [maxi]: maxTxt,
   };
-  console.log("the min=" + minim + "   and the max=" + maxi);
-  console.log(marks);
 
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
