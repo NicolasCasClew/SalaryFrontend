@@ -95,14 +95,6 @@ export function Page(): ReactElement {
             <Form.Item
               className={classes["input_divider"]}
               style={{ paddingTop: "5em" }}
-            >
-              <SalaryRadioButon
-                setIsEmployee={setIsEmployee}
-                helpText="Lorem ipsumt etc etc"
-              />
-            </Form.Item>
-            <Form.Item
-              className={classes["input_divider"]}
               label="Started with the company"
             >
               <SalaryDatePicker
@@ -149,6 +141,16 @@ export function Page(): ReactElement {
                 step={0.25}
                 helpText={loremIpsum}
               ></SalaryCalcSlider>
+            </Form.Item>
+            <Form.Item
+              className={classes["input_divider"]}
+              label="Type of contract"
+              style={{ paddingBottom: "2em" }}
+            >
+              <SalaryRadioButon
+                setIsEmployee={setIsEmployee}
+                helpText="Lorem ipsumt etc etc"
+              />
             </Form.Item>
             {/* <Form.Item
               name="tenure"

@@ -1,5 +1,6 @@
 import { Dispatch, ReactElement, SetStateAction } from "react";
 import { DatePicker, DatePickerProps, InputNumber, Tooltip } from "antd";
+import { InfoCircleOutlined } from "@ant-design/icons";
 
 export function SalaryDatePicker(props: {
   setDateMillisCounter: Dispatch<SetStateAction<string>>;
@@ -13,11 +14,14 @@ export function SalaryDatePicker(props: {
     props.setDateMillisCounter(date === null ? "0" : date + "");
   };
   return (
-    <Tooltip title={props.helpText} placement="right">
+    <div style={{ display: "flex", flexDirection: "row" }}>
       <DatePicker
         //style={{ width: "160px" }}
         onChange={onChange}
       />
-    </Tooltip>
+      <Tooltip title={props.helpText} placement="right">
+        <InfoCircleOutlined style={{ paddingLeft: "15px" }} />
+      </Tooltip>
+    </div>
   );
 }
