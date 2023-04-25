@@ -98,7 +98,7 @@ export function Page(): ReactElement {
               label="Started with the company"
             >
               <SalaryDatePicker
-                helpText="Lorem Ipsum cumsumtunsumlunsum"
+                helpText={loremIpsum}
                 setDateMillisCounter={setDateMillis}
               />
             </Form.Item>
@@ -149,7 +149,7 @@ export function Page(): ReactElement {
             >
               <SalaryRadioButon
                 setIsEmployee={setIsEmployee}
-                helpText="Lorem ipsumt etc etc"
+                helpText={loremIpsum}
               />
             </Form.Item>
             {/* <Form.Item

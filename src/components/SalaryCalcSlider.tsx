@@ -2,6 +2,7 @@ import { Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
 import { Slider, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { SliderMarks } from "antd/es/slider";
+import style from "./Icon.module.scss";
 
 export function SalaryCalcSlider(props: {
   setCounter: Dispatch<SetStateAction<number>>;
@@ -38,7 +39,7 @@ export function SalaryCalcSlider(props: {
         onChange={sliderChange}
       />
       <Tooltip title={props.helpText} placement="right">
-        <InfoCircleOutlined style={{ paddingLeft: "15px" }} />
+        <InfoCircleOutlined className={style["icon"]} />
       </Tooltip>
     </div>
   );

@@ -1,6 +1,7 @@
 import { Dispatch, ReactElement, SetStateAction } from "react";
 import { DatePicker, DatePickerProps, InputNumber, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import style from "./Icon.module.scss";
 
 export function SalaryDatePicker(props: {
   setDateMillisCounter: Dispatch<SetStateAction<string>>;
@@ -20,7 +21,7 @@ export function SalaryDatePicker(props: {
         onChange={onChange}
       />
       <Tooltip title={props.helpText} placement="right">
-        <InfoCircleOutlined style={{ paddingLeft: "15px" }} />
+        <InfoCircleOutlined className={style["icon"]} />
       </Tooltip>
     </div>
   );

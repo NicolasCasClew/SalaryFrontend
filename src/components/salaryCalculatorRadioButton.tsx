@@ -2,6 +2,7 @@ import { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import { Radio, Tooltip } from "antd";
 import type { RadioChangeEvent } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import style from "./Icon.module.scss";
 
 export function SalaryRadioButon(props: {
   setIsEmployee: Dispatch<SetStateAction<boolean>>;
@@ -25,7 +26,7 @@ export function SalaryRadioButon(props: {
         <Radio value={false}>Contractor</Radio>
       </Radio.Group>
       <Tooltip title={props.helpText} placement="right">
-        <InfoCircleOutlined style={{ paddingLeft: "15px" }} />
+        <InfoCircleOutlined className={style["icon"]} />
       </Tooltip>
     </div>
   );
