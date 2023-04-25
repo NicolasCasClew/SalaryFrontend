@@ -37,6 +37,7 @@ export function Page(): ReactElement {
       },
       body: JSON.stringify(numbers),
     });
+
     const salaryResult = await response.json();
     console.log(salaryResult); // 1=SalaryTotal   2=SeniorityPlus   3= loyaltyPlus   4=responsibilityPlus
     setResult(salaryResult[0]);
