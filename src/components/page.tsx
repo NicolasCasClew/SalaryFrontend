@@ -6,17 +6,18 @@ import { SalaryInputNumber } from "./salaryCalculatorInputNumber";
 import classes from "./page.module.scss";
 import { SalaryDatePicker } from "./SalaryDatePicker";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import { SalaryDTO } from "./salary.model";
 
 export function Page(): ReactElement {
   const { Title } = Typography;
   const [result, setResult] = useState<number>(0);
   const [hoursPerWeek, setHoursPerWeek] = useState(40);
-  const [expertiseCounter, setExpertiseCounter] = useState(1);
+  const [expertiseCounter, setExpertiseCounter] = useState(0);
   const [expertiseResult, setExpertiseResult] = useState(0);
   const [loyaltyResult, setLoyaltyResult] = useState(0);
   const [responsibilityResult, setResponsibilityResult] = useState(0);
   const [responsibilityCounter, setResponsibiltyCounter] = useState(1);
-  const [tenureCounter, setTenureCounter] = useState<number | null>(0);
+  const [tenureCounter, setTenureCounter] = useState<number>(0);
   const [FTECounter, setFTECounter] = useState(0);
   const [isHorizontal, setIsHorizontal] = useState(false);
   const [isEmployee, setIsEmployee] = useState(true);
@@ -27,8 +28,7 @@ export function Page(): ReactElement {
 
   const sendData = async () => {
     var n = Number(dateMillis);
-    console.log("Ekl numerito es =" + n);
-    const numbers = [
+    const numbers: number[] = [
       expertiseCounter,
       responsibilityCounter,
       tenureCounter,
@@ -36,6 +36,7 @@ export function Page(): ReactElement {
       isEmployee ? 1 : 0,
       n,
     ];
+    console.log(numbers);
     const response = await fetch("http://localhost:8080/processNumbers", {
       method: "POST",
       headers: {
@@ -44,14 +45,12 @@ export function Page(): ReactElement {
       body: JSON.stringify(numbers),
     });
 
-    const salaryResult = await response.json();
-    console.log(salaryResult); // 1=SalaryTotal   2=SeniorityPlus   3= loyaltyPlus   4=responsibilityPlus
-    setResult(salaryResult[0]);
-    setExpertiseResult(salaryResult[1]);
-    setLoyaltyResult(salaryResult[2]);
-    setResponsibilityResult(salaryResult[3]);
-    setFTECounter(salaryResult[4]);
-    setTenureCounter(salaryResult[5]);
+    const salaryResult: SalaryDTO = await response.json();
+    const { salaryFTE, salaryTotal } = salaryResult;
+    setFTECounter(salaryFTE);
+    setResult(salaryTotal);
+
+    console.log(salaryResult);
   };
 
   useEffect(() => {
@@ -94,11 +93,21 @@ export function Page(): ReactElement {
           <Form layout="vertical" name="dynamic_form_complex">
             <Form.Item
               className={classes["input_divider"]}
+              label="Type of contract"
               style={{ paddingTop: "5em" }}
+            >
+              <SalaryRadioButon
+                setIsEmployee={setIsEmployee}
+                helpText={loremIpsum}
+              />
+            </Form.Item>
+            <Form.Item
+              className={classes["input_divider"]}
               label="Started with the company"
             >
               <SalaryDatePicker
                 helpText={loremIpsum}
+                years={tenureCounter}
                 setDateMillisCounter={setDateMillis}
               />
             </Form.Item>
@@ -114,6 +123,15 @@ export function Page(): ReactElement {
                 step={1}
                 helpText={loremIpsum}
                 setCounter={setHoursPerWeek}
+                marks={{
+                  0: "0",
+                  8: "8",
+                  16: "16",
+                  24: "24",
+                  32: "32",
+                  40: "40",
+                }}
+                default={40}
               />
             </Form.Item>
             <Form.Item
@@ -125,14 +143,17 @@ export function Page(): ReactElement {
                 setCounter={setExpertiseCounter}
                 minNumber={0}
                 maxNumber={4}
-                step={1}
+                step={0.25}
                 helpText={loremIpsum}
+                marks={{ 0: "0", 1: "1", 2: "2", 3: "3", 4: "4" }}
+                default={0}
               ></SalaryCalcSlider>
             </Form.Item>
             <Form.Item
               name="responsibility"
               label="Responsibility"
               className={classes["input_divider"]}
+              style={{ paddingBottom: "2em" }}
             >
               <SalaryCalcSlider
                 setCounter={setResponsibiltyCounter}
@@ -140,28 +161,10 @@ export function Page(): ReactElement {
                 maxNumber={4}
                 step={0.25}
                 helpText={loremIpsum}
+                marks={{ 1: "1", 2: "2", 3: "3", 4: "4" }}
+                default={1}
               ></SalaryCalcSlider>
             </Form.Item>
-            <Form.Item
-              className={classes["input_divider"]}
-              label="Type of contract"
-              style={{ paddingBottom: "2em" }}
-            >
-              <SalaryRadioButon
-                setIsEmployee={setIsEmployee}
-                helpText={loremIpsum}
-              />
-            </Form.Item>
-            {/* <Form.Item
-              name="tenure"
-              label="Tenure"
-              className={classes["input_divider"]}
-            >
-              <SalaryInputNumber
-                setTenureCounter={setTenureCounter}
-                helpText={loremIpsum}
-              />
-            </Form.Item> */}
           </Form>
         </Col>
         <Col>
@@ -175,21 +178,7 @@ export function Page(): ReactElement {
 
         <Col className={classes["output_divider"]}>
           <div style={{ width: "18em" }}>
-            {/* <div className={classes["text_outputs"]}>
-              <Title level={5} style={{ fontSize: "15px", marginTop: "1em" }}>
-                Classification
-              </Title>
-              <Title level={5}>{isEmployee ? "Employee" : "Contractor"}</Title>
-            </div>
-            <Divider
-              type="horizontal"
-              className={classes["separator_outputs"]}
-              dashed
-            /> */}
-            <div
-              className={classes["text_outputs"]}
-              //style={{ paddingRight: "75px" }}
-            >
+            <div className={classes["text_outputs"]}>
               <Title level={5} style={{ fontSize: "15px", marginTop: "1em" }}>
                 Hours per week{" "}
               </Title>
@@ -200,12 +189,6 @@ export function Page(): ReactElement {
               className={classes["separator_outputs"]}
               dashed
             />
-            <div className={classes["text_outputs"]}>
-              <Title level={5} style={{ fontSize: "15px", marginTop: "1em" }}>
-                Year in the company(?)
-              </Title>
-              <Title level={5}>{tenureCounter} </Title>
-            </div>
             <Divider
               type="horizontal"
               className={classes["separator_outputs"]}
@@ -227,7 +210,6 @@ export function Page(): ReactElement {
             <Title level={3}>Salary </Title>
             <Title level={3}>€ {result.toLocaleString("de-DE")} </Title>
           </div>
-
           <Divider
             type="horizontal"
             style={{ borderColor: "#10320a", margin: "0" }}

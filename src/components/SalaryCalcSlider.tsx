@@ -9,22 +9,12 @@ export function SalaryCalcSlider(props: {
   minNumber: number;
   maxNumber: number;
   helpText: string;
+  marks: SliderMarks;
   step: number;
+  default: number;
 }): ReactElement {
   const sliderChange = (value: number) => {
     props.setCounter(value);
-  };
-
-  const minim: number = props.minNumber;
-  const maxi: number = props.maxNumber;
-  //const testmax: number = 4;
-  //minim = props.minNumber;
-  //maxi = props.maxNumber;
-  const minTxt: string = minim + "";
-  const maxTxt: string = maxi + "";
-  const marks = {
-    [minim]: minTxt,
-    [maxi]: maxTxt,
   };
 
   return (
@@ -32,9 +22,9 @@ export function SalaryCalcSlider(props: {
       <Slider
         min={props.minNumber}
         max={props.maxNumber}
-        marks={marks}
+        marks={props.marks}
         step={props.step}
-        defaultValue={props.maxNumber}
+        defaultValue={props.default}
         style={{ width: "25vw", maxWidth: "400px", minWidth: "180px" }}
         onChange={sliderChange}
       />
