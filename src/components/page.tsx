@@ -2,11 +2,10 @@ import { Divider, Row, Col, Form, Typography } from "antd";
 import { ReactElement, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
 import { SalaryRadioButon } from "./salaryCalculatorRadioButton";
-import { SalaryInputNumber } from "./salaryCalculatorInputNumber";
 import classes from "./page.module.scss";
 import { SalaryDatePicker } from "./SalaryDatePicker";
-import { InfoCircleOutlined } from "@ant-design/icons";
 import { SalaryDTO } from "./salary.model";
+import { SalaryOutDTO } from "./salaryOut.model";
 
 export function Page(): ReactElement {
   const { Title } = Typography;
@@ -28,29 +27,39 @@ export function Page(): ReactElement {
 
   const sendData = async () => {
     var n = Number(dateMillis);
-    const numbers: number[] = [
-      expertiseCounter,
-      responsibilityCounter,
-      tenureCounter,
-      hoursPerWeek,
-      isEmployee ? 1 : 0,
-      n,
-    ];
-    console.log(numbers);
+    // const numbers: number[] = [
+    //   expertiseCounter,
+    //   responsibilityCounter,
+    //   tenureCounter,
+    //   hoursPerWeek,
+    //   isEmployee ? 1 : 0,
+    //   n,
+    // ];
+    const salaryOut: SalaryOutDTO = {
+      expertise: expertiseCounter,
+      responsibility: responsibilityCounter,
+      hoursPerWeek: hoursPerWeek,
+      isEmployee: isEmployee,
+      millis: n,
+    };
+    console.log(isEmployee);
+    //console.log(salaryOut);
+    console.log("Stringyfied= " + JSON.stringify(salaryOut));
     const response = await fetch("http://localhost:8080/processNumbers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(numbers),
+      body: JSON.stringify(salaryOut),
     });
 
     const salaryResult: SalaryDTO = await response.json();
-    const { salaryFTE, salaryTotal } = salaryResult;
+    const { salaryFTE, salaryTotal, tenure } = salaryResult;
     setFTECounter(salaryFTE);
     setResult(salaryTotal);
+    setTenureCounter(tenure);
 
-    console.log(salaryResult);
+    //console.log(salaryResult);
   };
 
   useEffect(() => {
@@ -77,6 +86,7 @@ export function Page(): ReactElement {
     hoursPerWeek,
     isEmployee,
     dateMillis,
+    FTECounter,
   ]);
 
   return (
