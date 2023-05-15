@@ -25,7 +25,7 @@ export function SalaryHeader(props: {
           //id="#lightModeButton"
           className={styles["light_mode_button"]}
           onClick={() => themeChange(isTrue)}
-          data-cy="botonido"
+          data-cy="lightButton"
         >
           Light/Night
         </Button>

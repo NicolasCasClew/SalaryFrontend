@@ -7,8 +7,8 @@ describe("template spec", () => {
     //cy.get("#radioButton2").click; // Check first radio element
     cy.contains("Adabtive Salary Tool");
 
-    cy.get('[data-cy="botonido"]').click();
-    cy.get('[data-cy="botonido"]').click();
+    cy.get('[data-cy="lightButton"]').click();
+    cy.get('[data-cy="lightButton"]').click();
 
     cy.get(".ant-picker").type("3-May-21{enter}");
 
