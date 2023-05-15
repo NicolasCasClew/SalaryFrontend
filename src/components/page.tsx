@@ -47,6 +47,7 @@ export function Page(): ReactElement {
     console.log("Stringyfied= " + JSON.stringify(salaryOut));
     const response = await fetch("http://localhost:8080/processNumbers", {
       method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -107,6 +108,8 @@ export function Page(): ReactElement {
               style={{ paddingTop: "5em" }}
             >
               <SalaryRadioButon
+                id="#radioButton"
+                id2="#radioButton2"
                 setIsEmployee={setIsEmployee}
                 helpText={loremIpsum}
               />
