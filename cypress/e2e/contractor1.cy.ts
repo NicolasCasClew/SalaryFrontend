@@ -25,7 +25,6 @@ describe("Contractor 40h 4 expertise 4 Responsibility, in light mode", () => {
   });
   it("changes the background color", () => {
     cy.get('[data-cy="lightButton"]').click();
-
     cy.get(".ant-row.page_colTest__BoG4a")
       .should("have.css", "background-color")
       .and("eq", "rgba(0, 0, 0, 0)");

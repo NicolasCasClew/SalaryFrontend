@@ -108,8 +108,7 @@ export function Page(): ReactElement {
               style={{ paddingTop: "5em" }}
             >
               <SalaryRadioButon
-                id="#radioButton"
-                id2="#radioButton2"
+                id="radioButton"
                 setIsEmployee={setIsEmployee}
                 helpText={loremIpsum}
               />

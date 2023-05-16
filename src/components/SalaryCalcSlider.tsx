@@ -20,6 +20,7 @@ export function SalaryCalcSlider(props: {
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
       <Slider
+        data-cy="responsibilitySlider"
         min={props.minNumber}
         max={props.maxNumber}
         marks={props.marks}

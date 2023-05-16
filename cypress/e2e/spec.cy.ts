@@ -50,4 +50,13 @@ describe("template spec", () => {
     ).click();
     cy.contains("23.712");
   });
+
+  it("intercept works", () => {
+    cy.intercept("POST", "http://localhost:8080/processNumbers", (req) => {
+      const { body } = req;
+      console.log("cuerpo serrano = " + body);
+    }).as("read");
+
+    //cy.contains("17100");
+  });
 });

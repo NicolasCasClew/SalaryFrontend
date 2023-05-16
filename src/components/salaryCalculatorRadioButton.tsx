@@ -8,7 +8,6 @@ export function SalaryRadioButon(props: {
   setIsEmployee: Dispatch<SetStateAction<boolean>>;
   helpText: string;
   id: string;
-  id2: string;
 }): ReactElement {
   const [isEmployee, setIsemployee] = useState<boolean>(true);
   const radioButtonChange = (value: RadioChangeEvent) => {
@@ -27,9 +26,7 @@ export function SalaryRadioButon(props: {
         <Radio id={props.id} value={true}>
           Employee
         </Radio>
-        <Radio id={props.id2} value={false}>
-          Contractor
-        </Radio>
+        <Radio value={false}>Contractor</Radio>
       </Radio.Group>
       <Tooltip title={props.helpText} placement="right">
         <InfoCircleOutlined className={style["icon"]} />
