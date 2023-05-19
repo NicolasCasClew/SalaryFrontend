@@ -42,9 +42,9 @@ export function Page(): ReactElement {
       isEmployee: isEmployee,
       millis: n,
     };
-    console.log(isEmployee);
+    //console.log(isEmployee);
     //console.log(salaryOut);
-    console.log("Stringyfied= " + JSON.stringify(salaryOut));
+    // console.log("Stringyfied= " + JSON.stringify(salaryOut));
     const response = await fetch("http://localhost:8080/processNumbers", {
       method: "POST",
       mode: "cors",
@@ -83,11 +83,9 @@ export function Page(): ReactElement {
   }, [
     expertiseCounter,
     responsibilityCounter,
-    tenureCounter,
     hoursPerWeek,
     isEmployee,
     dateMillis,
-    FTECounter,
   ]);
 
   return (
