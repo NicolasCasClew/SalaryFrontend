@@ -4,11 +4,17 @@ import { Page } from "./page";
 import { SalaryHeader } from "./header";
 import styles from "./App.module.scss";
 import InfiniScroll from "./infiniList";
+import { DBForm } from "./dbInputs";
+import { Route, Routes } from "react-router-dom";
+import SalaryContent from "./SalaryContent";
+import { SalaryOutDTO } from "./salaryOut.model";
 
 const { Content, Footer, Sider } = Layout;
 
-function App(): ReactElement {
+function Appi(): ReactElement {
   const [darkTheme, setDarkTheme] = useState(true);
+  const [receivedData, setReceivedData] = useState<SalaryOutDTO | null>(null);
+
   return (
     <>
       <ConfigProvider
@@ -26,8 +32,18 @@ function App(): ReactElement {
               className={styles["sider"]}
             />
             <Content className={styles["content"]}>
-              {/* <Page></Page> */}
-              <InfiniScroll />
+              <Routes>
+                <Route
+                  path="/"
+                  element={<Page setReceivedData={setReceivedData} />}
+                />{" "}
+                <Route
+                  path="admin"
+                  element={
+                    receivedData ? <DBForm salaryOutDTO={receivedData} /> : null
+                  }
+                />
+              </Routes>
             </Content>
             <Sider
               breakpoint="xl"
@@ -43,4 +59,4 @@ function App(): ReactElement {
   );
 }
 
-export default App;
+export default Appi;

@@ -3,10 +3,15 @@ import { ReactElement, useState } from "react";
 import { Page } from "./page";
 import { SalaryHeader } from "./header";
 import styles from "./App.module.scss";
+import { SalaryOutDTO } from "./salaryOut.model";
 
 const { Content, Footer, Sider } = Layout;
 
-function App(): ReactElement {
+function SalaryContent({
+  setReceivedData,
+}: {
+  setReceivedData: React.Dispatch<React.SetStateAction<SalaryOutDTO | null>>;
+}): ReactElement {
   const [darkTheme, setDarkTheme] = useState(true);
   return (
     <>
@@ -25,7 +30,7 @@ function App(): ReactElement {
               className={styles["sider"]}
             />
             <Content className={styles["content"]}>
-              <Page></Page>
+              <Page setReceivedData={setReceivedData}></Page>
             </Content>
             <Sider
               breakpoint="xl"
@@ -41,4 +46,4 @@ function App(): ReactElement {
   );
 }
 
-export default App;
+export default SalaryContent;

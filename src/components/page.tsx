@@ -1,4 +1,5 @@
-import { Divider, Row, Col, Form, Typography } from "antd";
+import { Divider, Row, Col, Form, Typography, Button } from "antd";
+import { useNavigate } from "react-router-dom";
 import { ReactElement, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
 import { SalaryRadioButon } from "./salaryCalculatorRadioButton";
@@ -7,7 +8,11 @@ import { SalaryDatePicker } from "./SalaryDatePicker";
 import { SalaryDTO } from "./salary.model";
 import { SalaryOutDTO } from "./salaryOut.model";
 
-export function Page(): ReactElement {
+export function Page({
+  setReceivedData,
+}: {
+  setReceivedData: React.Dispatch<React.SetStateAction<SalaryOutDTO | null>>;
+}): ReactElement {
   const { Title } = Typography;
   const [result, setResult] = useState<number>(0);
   const [hoursPerWeek, setHoursPerWeek] = useState(40);
@@ -22,6 +27,8 @@ export function Page(): ReactElement {
   const [isEmployee, setIsEmployee] = useState(true);
   const [width, setWidth] = useState(window.innerWidth);
   const [dateMillis, setDateMillis] = useState("");
+  const [salaryOut, setSalaryOut] = useState<SalaryOutDTO | null>(null);
+  const navigate = useNavigate();
   const loremIpsum =
     " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam";
 
@@ -35,13 +42,14 @@ export function Page(): ReactElement {
     //   isEmployee ? 1 : 0,
     //   n,
     // ];
-    const salaryOut: SalaryOutDTO = {
+    const tempSalaryOut: SalaryOutDTO = {
       expertise: expertiseCounter,
       responsibility: responsibilityCounter,
       hoursPerWeek: hoursPerWeek,
       isEmployee: isEmployee,
       millis: n,
     };
+    setSalaryOut(tempSalaryOut);
     //console.log(isEmployee);
     //console.log(salaryOut);
     // console.log("Stringyfied= " + JSON.stringify(salaryOut));
@@ -51,7 +59,7 @@ export function Page(): ReactElement {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(salaryOut),
+      body: JSON.stringify(tempSalaryOut),
     });
 
     const salaryResult: SalaryDTO = await response.json();
@@ -61,6 +69,11 @@ export function Page(): ReactElement {
     setTenureCounter(tenure);
 
     //console.log(salaryResult);
+  };
+  const sendDataToParent = () => {
+    //const data = { salaryOut }; // Replace with your actual data
+    setReceivedData(salaryOut);
+    navigate("/admin");
   };
 
   useEffect(() => {
@@ -163,7 +176,7 @@ export function Page(): ReactElement {
               name="responsibility"
               label="Responsibility"
               className={classes["input_divider"]}
-              style={{ paddingBottom: "2em" }}
+              //style={{ paddingBottom: "2em" }}
             >
               <SalaryCalcSlider
                 setCounter={setResponsibiltyCounter}
@@ -174,6 +187,14 @@ export function Page(): ReactElement {
                 marks={{ 1: "1", 2: "2", 3: "3", 4: "4" }}
                 default={1}
               ></SalaryCalcSlider>
+            </Form.Item>
+            <Form.Item
+              className={classes["input_divider"]}
+              style={{ paddingBottom: "2em" }}
+            >
+              <Button type="primary" onClick={sendDataToParent}>
+                Create user
+              </Button>
             </Form.Item>
           </Form>
         </Col>

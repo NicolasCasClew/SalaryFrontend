@@ -5,13 +5,14 @@ import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import SalaryContent from "./components/SalaryContent";
 import { BrowserRouter } from "react-router-dom";
+import Appi from "./components/DBContent";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <BrowserRouter>
-    <App />
+    <Appi />
   </BrowserRouter>
 );
 
