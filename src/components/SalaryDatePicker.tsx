@@ -5,7 +5,7 @@ import style from "./Icon.module.scss";
 import Title from "antd/es/typography/Title";
 
 export function SalaryDatePicker(props: {
-  setDateMillisCounter: Dispatch<SetStateAction<string>>;
+  setDateMillisCounter: Dispatch<SetStateAction<number>>;
   helpText: string;
   years: number;
 }): ReactElement {
@@ -14,7 +14,9 @@ export function SalaryDatePicker(props: {
   };
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     //console.log(date + "  y la string =" + dateString);
-    props.setDateMillisCounter(date === null ? "0" : date + "");
+    const tempDate = date === null ? "0" : date + "";
+    const tempNum: number = +tempDate;
+    props.setDateMillisCounter(tempNum);
   };
   const dateformat = "DD-MMM-YY";
   const singular = props.years + " year in adabtive";

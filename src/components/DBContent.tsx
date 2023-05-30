@@ -38,7 +38,7 @@ function Appi(): ReactElement {
                   element={<Page setReceivedData={setReceivedData} />}
                 />{" "}
                 <Route
-                  path="admin"
+                  path="/admin"
                   element={
                     receivedData ? <DBForm salaryOutDTO={receivedData} /> : null
                   }

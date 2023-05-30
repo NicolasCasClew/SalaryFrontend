@@ -1,12 +1,25 @@
-import { Divider, Row, Col, Form, Typography, Button } from "antd";
+import {
+  Divider,
+  Row,
+  Col,
+  Form,
+  Typography,
+  Button,
+  Popover,
+  Input,
+} from "antd";
 import { useNavigate } from "react-router-dom";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, SetStateAction, useEffect, useState } from "react";
 import { SalaryCalcSlider } from "./SalaryCalcSlider";
 import { SalaryRadioButon } from "./salaryCalculatorRadioButton";
 import classes from "./page.module.scss";
 import { SalaryDatePicker } from "./SalaryDatePicker";
 import { SalaryDTO } from "./salary.model";
 import { SalaryOutDTO } from "./salaryOut.model";
+import InfiniScroll from "./infiniList";
+import { UserCreator } from "./UserCreator";
+import { AllData } from "./allData.model";
+import { FullUser } from "./newSalaryDTO.model";
 
 export function Page({
   setReceivedData,
@@ -14,6 +27,11 @@ export function Page({
   setReceivedData: React.Dispatch<React.SetStateAction<SalaryOutDTO | null>>;
 }): ReactElement {
   const { Title } = Typography;
+  const [name, setName] = useState("null");
+  const [surname, setSurname] = useState("null");
+  const [mail, setMail] = useState("null");
+  const [isOpen, setIsOpen] = useState(true);
+  const [currentID, setCurrentID] = useState<string | null>("");
   const [result, setResult] = useState<number>(0);
   const [hoursPerWeek, setHoursPerWeek] = useState(40);
   const [expertiseCounter, setExpertiseCounter] = useState(0);
@@ -26,7 +44,7 @@ export function Page({
   const [isHorizontal, setIsHorizontal] = useState(false);
   const [isEmployee, setIsEmployee] = useState(true);
   const [width, setWidth] = useState(window.innerWidth);
-  const [dateMillis, setDateMillis] = useState("");
+  const [dateMillis, setDateMillis] = useState<number>(0);
   const [salaryOut, setSalaryOut] = useState<SalaryOutDTO | null>(null);
   const navigate = useNavigate();
   const loremIpsum =
@@ -70,6 +88,53 @@ export function Page({
 
     //console.log(salaryResult);
   };
+  const getUserById = async (id: String | null) => {
+    const response = await fetch(`http://localhost:8080/users/${id}`, {
+      method: "GET",
+      //mode: "cors",
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
+      // body: JSON.stringify(tempSalaryOut),
+    });
+
+    const salaryResult: FullUser = await response.json();
+    console.log(salaryResult);
+    const { salaryUser } = salaryResult;
+    setExpertiseCounter(salaryUser.expertise);
+    setResponsibiltyCounter(salaryUser.responsibility);
+    setHoursPerWeek(salaryUser.hoursPerWeek);
+    setDateMillis(salaryUser.startDate);
+    setIsEmployee(salaryUser.employee);
+  };
+
+  const [form] = Form.useForm();
+  const createUser = async () => {
+    const tempAllData: AllData = {
+      name: name,
+      surname: surname,
+      mail: mail,
+      expertise: expertiseCounter,
+      responsibility: responsibilityCounter,
+      hoursPerWeek: hoursPerWeek,
+      isEmployee: isEmployee,
+      millis: dateMillis,
+    };
+    form.resetFields();
+    console.log("all data");
+    console.log(tempAllData);
+
+    const response = await fetch("http://localhost:8080/users", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(tempAllData),
+    });
+    navigate("/");
+    //console.log(salaryResult);
+  };
   const sendDataToParent = () => {
     //const data = { salaryOut }; // Replace with your actual data
     setReceivedData(salaryOut);
@@ -101,6 +166,10 @@ export function Page({
     dateMillis,
   ]);
 
+  useEffect(() => {
+    console.log(currentID);
+    getUserById(currentID);
+  }, [currentID]);
   return (
     <>
       <Row
@@ -192,9 +261,82 @@ export function Page({
               className={classes["input_divider"]}
               style={{ paddingBottom: "2em" }}
             >
-              <Button type="primary" onClick={sendDataToParent}>
-                Create user
+              <Button
+                type="primary"
+                onClick={sendDataToParent}
+                //style={{ paddingRight: "1em" }}
+              >
+                User Manager
               </Button>
+              <> | </>
+              <Popover
+                placement="topLeft"
+                title={"User Selector"}
+                content={
+                  <InfiniScroll
+                    setId={setCurrentID}
+                    //getUserById={getUserById}
+                  />
+                }
+                trigger="click"
+              >
+                <Button>Select User</Button>
+              </Popover>
+              <Popover
+                placement="topLeft"
+                title={"User Creator"}
+                //open={isOpen}
+                content={
+                  <Form
+                    layout="vertical"
+                    name="dynamic_form_complex"
+                    form={form}
+                  >
+                    <Form.Item
+                      className={classes[""]}
+                      //style={{ paddingTop: "5em" }}
+                      label="Name"
+                      name="name"
+                    >
+                      <Input
+                        value={name}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          setName(e.target.value);
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      className={classes[""]}
+                      label="Surname"
+                      name="surname"
+                    >
+                      <Input
+                        value={surname}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          setSurname(e.target.value);
+                        }}
+                      />
+                    </Form.Item>
+
+                    <Form.Item className={classes[""]} label="Mail" name="mail">
+                      <Input
+                        value={mail}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          setMail(e.target.value);
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item className={classes[""]}>
+                      <Button type="primary" onClick={createUser}>
+                        Create User
+                      </Button>
+                    </Form.Item>
+                  </Form>
+                }
+                trigger="click"
+              >
+                <Button>Quick Create</Button>
+              </Popover>
             </Form.Item>
           </Form>
         </Col>
