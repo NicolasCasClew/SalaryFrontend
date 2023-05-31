@@ -17,11 +17,16 @@ export function SalaryHeader(props: {
   return (
     <Header className={styles["header"]}>
       <div className={styles["header_items_left"]}>
-        <img className={styles["logo"]} src={logo} alt={logo} />
+        {/* <img className={styles["logo"]} src={logo} alt={logo} /> */}
         <h1 style={{ fontSize: "23px" }}>Salary Tool</h1>
       </div>
       <div className={styles["header_items_right"]}>
-        <Button style={{ gap: "10px" }} onClick={() => themeChange(isTrue)}>
+        <Button
+          //id="#lightModeButton"
+          className={styles["light_mode_button"]}
+          onClick={() => themeChange(isTrue)}
+          data-cy="lightButton"
+        >
           Light/Night
         </Button>
       </div>

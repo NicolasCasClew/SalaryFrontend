@@ -1,24 +1,33 @@
 import { Dispatch, ReactElement, SetStateAction } from "react";
-import { Select } from "antd";
+import { Select, SelectProps, Tooltip } from "antd";
 
 export function SalaryCalcDropDown(props: {
   setExpertiseCounter: Dispatch<SetStateAction<number>>;
+  itemNumberBegin: number;
+  itemNumberEnd: number;
+  helpText: string;
 }): ReactElement {
-  const handleselectChange = (value: number) => {
+  const allOptions: SelectProps["options"] = [];
+
+  const handleSelectChange = (value: number) => {
     props.setExpertiseCounter(value);
   };
 
+  for (let i = props.itemNumberBegin; i <= props.itemNumberEnd; i++) {
+    allOptions.push({
+      label: i,
+      value: i,
+    });
+  }
+
   return (
-    <Select
-      style={{ width: 120 }}
-      onChange={handleselectChange}
-      defaultValue={1}
-      options={[
-        { value: 1, label: "1" },
-        { value: 2, label: "2" },
-        { value: 3, label: "3" },
-        { value: 4, label: "4" },
-      ]}
-    />
+    <Tooltip title={props.helpText} placement="right">
+      <Select
+        style={{ width: 120 }}
+        onChange={handleSelectChange}
+        defaultValue={1}
+        options={allOptions}
+      />
+    </Tooltip>
   );
 }

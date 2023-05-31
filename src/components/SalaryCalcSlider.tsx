@@ -1,19 +1,39 @@
-import { Dispatch, ReactElement, SetStateAction } from "react";
-import { Slider } from "antd";
+import { Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
+import { Slider, Tooltip } from "antd";
+import { InfoCircleOutlined } from "@ant-design/icons";
+import { SliderMarks } from "antd/es/slider";
+import style from "./Icon.module.scss";
 
 export function SalaryCalcSlider(props: {
-  setTenureCounter: Dispatch<SetStateAction<number>>;
+  setCounter: Dispatch<SetStateAction<number>>;
+  counter: number;
+  minNumber: number;
+  maxNumber: number;
+  helpText: string;
+  marks: SliderMarks;
+  step: number;
+  //default: number;
 }): ReactElement {
   const sliderChange = (value: number) => {
-    props.setTenureCounter(value);
+    props.setCounter(value);
   };
 
   return (
-    <Slider
-      min={0}
-      max={4}
-      style={{ width: "160px" }}
-      onChange={sliderChange}
-    />
+    <div style={{ display: "flex", flexDirection: "row" }}>
+      <Slider
+        //data-cy="responsibilitySlider"
+        min={props.minNumber}
+        max={props.maxNumber}
+        marks={props.marks}
+        step={props.step}
+        //defaultValue={props.default}
+        value={props.counter}
+        style={{ width: "25vw", maxWidth: "400px", minWidth: "180px" }}
+        onChange={sliderChange}
+      />
+      <Tooltip title={props.helpText} placement="right">
+        <InfoCircleOutlined className={style["icon"]} />
+      </Tooltip>
+    </div>
   );
 }
