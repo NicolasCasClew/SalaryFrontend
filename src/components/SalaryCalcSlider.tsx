@@ -6,12 +6,13 @@ import style from "./Icon.module.scss";
 
 export function SalaryCalcSlider(props: {
   setCounter: Dispatch<SetStateAction<number>>;
+  counter: number;
   minNumber: number;
   maxNumber: number;
   helpText: string;
   marks: SliderMarks;
   step: number;
-  default: number;
+  //default: number;
 }): ReactElement {
   const sliderChange = (value: number) => {
     props.setCounter(value);
@@ -25,7 +26,8 @@ export function SalaryCalcSlider(props: {
         max={props.maxNumber}
         marks={props.marks}
         step={props.step}
-        defaultValue={props.default}
+        //defaultValue={props.default}
+        value={props.counter}
         style={{ width: "25vw", maxWidth: "400px", minWidth: "180px" }}
         onChange={sliderChange}
       />

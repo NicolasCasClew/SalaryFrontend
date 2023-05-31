@@ -20,6 +20,7 @@ import InfiniScroll from "./infiniList";
 import { UserCreator } from "./UserCreator";
 import { AllData } from "./allData.model";
 import { FullUser } from "./newSalaryDTO.model";
+import dayjs from "dayjs";
 
 export function Page({
   setReceivedData,
@@ -188,6 +189,7 @@ export function Page({
               style={{ paddingTop: "5em" }}
             >
               <SalaryRadioButon
+                currentValue={isEmployee}
                 id="radioButton"
                 setIsEmployee={setIsEmployee}
                 helpText={loremIpsum}
@@ -198,6 +200,7 @@ export function Page({
               label="Started with the company"
             >
               <SalaryDatePicker
+                currentTime={dateMillis}
                 helpText={loremIpsum}
                 years={tenureCounter}
                 setDateMillisCounter={setDateMillis}
@@ -215,6 +218,7 @@ export function Page({
                 step={1}
                 helpText={loremIpsum}
                 setCounter={setHoursPerWeek}
+                counter={hoursPerWeek}
                 marks={{
                   0: "0",
                   8: "8",
@@ -223,7 +227,7 @@ export function Page({
                   32: "32",
                   40: "40",
                 }}
-                default={40}
+                //default={40}
               />
             </Form.Item>
             <Form.Item
@@ -233,12 +237,13 @@ export function Page({
             >
               <SalaryCalcSlider
                 setCounter={setExpertiseCounter}
+                counter={expertiseCounter}
                 minNumber={0}
                 maxNumber={4}
                 step={0.25}
                 helpText={loremIpsum}
                 marks={{ 0: "0", 1: "1", 2: "2", 3: "3", 4: "4" }}
-                default={0}
+                //default={0}
               ></SalaryCalcSlider>
             </Form.Item>
             <Form.Item
@@ -248,13 +253,14 @@ export function Page({
               //style={{ paddingBottom: "2em" }}
             >
               <SalaryCalcSlider
+                counter={responsibilityCounter}
                 setCounter={setResponsibiltyCounter}
                 minNumber={1}
                 maxNumber={4}
                 step={0.25}
                 helpText={loremIpsum}
                 marks={{ 1: "1", 2: "2", 3: "3", 4: "4" }}
-                default={1}
+                //default={1}
               ></SalaryCalcSlider>
             </Form.Item>
             <Form.Item

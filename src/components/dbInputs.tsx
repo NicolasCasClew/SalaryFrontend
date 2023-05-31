@@ -18,10 +18,6 @@ export function DBForm(props: { salaryOutDTO: SalaryOutDTO }): ReactElement {
   const deleteUser = async (id: String | null) => {
     const response = await fetch(`http://localhost:8080/users/${id}`, {
       method: "DEL",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(selectedID),
     });
 
